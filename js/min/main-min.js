@@ -1,0 +1,1 @@
+$(function(){var o=$(window),t=o.height(),e=o.width(),i=$("#slider"),l=Math.max(t/2848,e/4288),s=new TimelineLite({paused:!0}).to(i,1,{zoom:l}).to($("#title"),.1,{opacity:"0",zoom:1.5},0).to(i,.5,{opacity:0}),r=o.scrollTop();o.on("scroll",function(){r=o.scrollTop();var e=r/(1.5*t);e>=0&&s.progress(e).pause(),console.log(s.progress())})});
