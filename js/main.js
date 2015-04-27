@@ -39,15 +39,15 @@ $(document).ready(function() {
 			["Mobile Devices", 19]
 		],
 		create: [
-			["USA", 30],
-			["B", 25],
-			["C", 20],
-			["D", 15],
-			["E", 10]
+			['Computers', 40],
+			['Monitors', 33],
+			['Hard Drives', 33],
+			['Peripherals', 10],
+			['Mobile Devices', 11]
 		]
 	};
 
-	var pie = undefined;
+	pie = undefined;
 	// Animate chart creation, but only once
 	new ScrollMagic.Scene({
 		triggerElement: "#pin",
@@ -60,7 +60,7 @@ $(document).ready(function() {
 				renderTo: "chart"
 			},
 			title: {
-				text: "",
+				text: "Waste",
 				align: "center",
 				verticalAlign: "middle"
 			},
@@ -75,7 +75,7 @@ $(document).ready(function() {
 			},
 			series: [{
 				type: "pie",
-				name: "Units",
+				name: "Tons Discarded",
 				innerSize: "30%",
 				data: JSON.parse(JSON.stringify(chartData.discard))
 			}]
@@ -98,11 +98,15 @@ $(document).ready(function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.create[i], false);
 		});
+		pie.series[0].tooltipOptions.valueSuffix = "%"
+		pie.series[0].name = "Percentage Recycled"
 		pie.redraw();
 	}).on("leave", function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.discard[i], false);
 		});
+		pie.series[0].tooltipOptions.valueSuffix = "k"
+		pie.series[0].name = "Tons Discarded"
 		pie.redraw();
 	}).addTo(controller);
 
