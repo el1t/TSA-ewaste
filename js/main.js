@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
 	var $window = $(window);
 	var windowHeight = $window.height();
 	var windowWidth = $window.width();
@@ -7,33 +7,45 @@ $(function() {
 	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
 	var sliderZoom = new TimelineLite({paused:true})
 		.to(image, 1, {zoom:zoomDepth})
-		.to($("#title"), 0.1, {opacity: "0", zoom:1.5}, 0)
+		.to($("#start"), 0.1, {css: {autoAlpha: "0", display: "none"}}, 0)
 		.to(image, 0.5, {opacity:0});
 
 	var scrollTop = $window.scrollTop();
 	$window.on("scroll", function() {
 		scrollTop = $window.scrollTop();
-		var scrollPercent = scrollTop / (windowHeight * 1.5);
+		var scrollPercent = scrollTop / (windowHeight);
 		if(scrollPercent >= 0) {
 			TweenLite.to(sliderZoom.pause(), 0.1, {time: scrollPercent});
 		}
-		console.log(sliderZoom.progress());
 	});
-});
 
-$(function () {
+	// Chart setup
+	var chartData = {
+		discard: [
+			['A', 45.0],
+			['B', 26],
+			['C', 13.6],
+			['D', 8.5],
+			['E', 6.9]
+		],
+		create: [
+			['A', 30],
+			['B', 25],
+			['C', 20],
+			['D', 15],
+			['E', 10]
+		]
+	};
 	// Create the chart
-	$('#container').highcharts({
+	pie = new Highcharts.Chart({
 		chart: {
-			type: 'pie'
+			type: 'pie',
+			renderTo: 'chart'
 		},
 		title: {
-			text: 'Some chart!'
-		},
-		yAxis: {
-			title: {
-				text: 'What a nice animation'
-			}
+			text: 'Chart!',
+			align: 'center',
+			verticalAlign: 'middle'
 		},
 		plotOptions: {
 			pie: {
@@ -46,22 +58,32 @@ $(function () {
 		},
 		series: [{
 			type: 'pie',
-			name: 'Data',
+			name: 'Units',
 			innerSize: '50%',
-			data: [
-				['A', 45.0],
-				['B', 26],
-				['C', 13.6],
-				['D', 8.5],
-				['E', 6.2],
-				{
-					name: 'F',
-					y: 0.7,
-					dataLabels: {
-						enabled: false
-					}
-				}
-			]
+			data: JSON.parse(JSON.stringify(chartData.discard))
 		}]
 	});
+
+	var scrollController = new ScrollMagic.Controller();
+	new ScrollMagic.Scene({
+		triggerElement: '#pin', // starting scene, when reaching this element
+		triggerHook: 'onLeave',
+		duration: windowHeight  // length in pixels
+	}).setPin('#pin')   // pin this element
+		.addTo(scrollController);
+	// Event to switch pie chart
+	new ScrollMagic.Scene({
+		triggerElement: '#section2',
+		duration: 0,
+	}).on('enter',function () {
+		$.each(pie.series[0].data, function (i, point) {
+			point.update(chartData.create[i], false);
+		});
+		pie.redraw();
+	}).on('leave',function () {
+		$.each(pie.series[0].data, function (i, point) {
+			point.update(chartData.discard[i], false);
+		});
+		pie.redraw();
+	}).addTo(scrollController);
 });

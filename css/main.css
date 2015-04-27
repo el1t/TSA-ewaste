@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -266,6 +266,8 @@ section {
   section .content {
     max-width: 90%;
     text-align: center; }
+  section h1 {
+    padding: 0; }
 
 #slider {
   position: fixed;
@@ -283,7 +285,30 @@ section {
 #start {
   position: fixed;
   color: #FFF;
-  font-size: 200%; }
+  font-size: 200%;
+  font-weight: lighter; }
 
 #padding {
   height: 200%; }
+
+#chart {
+  width: 75%;
+  height: 75%; }
+
+.cols {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+  .cols > div {
+    height: 100%;
+    width: 50%; }
+  .cols .col {
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; }
+    .cols .col.left {
+      -webkit-justify-content: flex-end;
+      text-align: right; }
