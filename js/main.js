@@ -1,7 +1,8 @@
 $(document).ready(function() {
-	var $window = $(window);
-	var windowHeight = $window.height();
-	var windowWidth = $window.width();
+	var $window = $(window),
+		windowHeight = $window.height(),
+		windowWidth = $window.width(),
+		controller = new ScrollMagic.Controller();
 
 	var image = $("#slider");
 	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
@@ -20,75 +21,92 @@ $(document).ready(function() {
 		}
 	});
 
+	// Pin first background for 3 screens
+	new ScrollMagic.Scene({
+		triggerElement: "#bg1",
+		triggerHook: "onLeave",
+		duration: windowHeight * 2
+	}).setPin("#bg1")
+		.addTo(controller);
+
 	// Chart setup
 	var chartData = {
 		discard: [
-			['A', 45.0],
-			['B', 26],
-			['C', 13.6],
-			['D', 8.5],
-			['E', 6.9]
+			["Monitors", 595],
+			["Computers", 423],
+			["Hard Drives", 290],
+			["Computer Peripherals", 67],
+			["Mobile Devices", 19]
 		],
 		create: [
-			['A', 30],
-			['B', 25],
-			['C', 20],
-			['D', 15],
-			['E', 10]
+			["USA", 30],
+			["B", 25],
+			["C", 20],
+			["D", 15],
+			["E", 10]
 		]
 	};
-	// Create the chart
-	pie = new Highcharts.Chart({
-		chart: {
-			type: 'pie',
-			renderTo: 'chart'
-		},
-		title: {
-			text: 'Chart!',
-			align: 'center',
-			verticalAlign: 'middle'
-		},
-		plotOptions: {
-			pie: {
-				shadow: false,
-				center: ['50%', '50%']
-			}
-		},
-		tooltip: {
-			valueSuffix: '%'
-		},
-		series: [{
-			type: 'pie',
-			name: 'Units',
-			innerSize: '50%',
-			data: JSON.parse(JSON.stringify(chartData.discard))
-		}]
-	});
 
-	var controller = new ScrollMagic.Controller();
+	var pie = undefined;
+	// Animate chart creation, but only once
 	new ScrollMagic.Scene({
-		triggerElement: '#pin', // starting scene, when reaching this element
-		triggerHook: 'onLeave',
-		duration: windowHeight  // length in pixels
-	}).setPin('#pin')   // pin this element
+		triggerElement: "#pin",
+		triggerHook: "onCenter",
+		duration: 0
+	}).on("enter", function() {
+		pie = pie || new Highcharts.Chart({
+			chart: {
+				type: "pie",
+				renderTo: "chart"
+			},
+			title: {
+				text: "",
+				align: "center",
+				verticalAlign: "middle"
+			},
+			plotOptions: {
+				pie: {
+					shadow: false,
+					center: ["50%", "50%"]
+				}
+			},
+			tooltip: {
+				valueSuffix: "k"
+			},
+			series: [{
+				type: "pie",
+				name: "Units",
+				innerSize: "30%",
+				data: JSON.parse(JSON.stringify(chartData.discard))
+			}]
+		});
+	}).addTo(controller);
+
+	// Pin pie chart
+	new ScrollMagic.Scene({
+		triggerElement: "#pin",
+		triggerHook: "onLeave",
+		duration: windowHeight
+	}).setPin("#pin")
 		.addTo(controller);
+
 	// Event to switch pie chart
 	new ScrollMagic.Scene({
-		triggerElement: '#section2',
+		triggerElement: "#section2",
 		duration: 0
-	}).on('enter',function () {
+	}).on("enter", function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.create[i], false);
 		});
 		pie.redraw();
-	}).on('leave',function () {
+	}).on("leave", function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.discard[i], false);
 		});
 		pie.redraw();
 	}).addTo(controller);
 
-	// Parallax
+	// Parallax phone
 	var phone = $("#cellphone");
 	phone.on("load", function() {
 		phone.css("left", -phone.width() / 3 + "px");

@@ -10,7 +10,7 @@ body {
 section {
 	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
 	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -ms-flexbox;      /* IE 10 */
 	display: -webkit-flex;     /* NEW - Chrome */
 	display: flex;
 	height: 100%;
@@ -29,11 +29,10 @@ section {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	z-index: -999;
-	background-image: url("../images/picture-064.jpg");
-	background-position: center center;
-	-webkit-filter:brightness(90%);
-	-moz-filter:brightness(90%);
+	z-index: 1;
+	background: url("../images/picture-064.jpg") center center;
+	-webkit-filter: brightness(90%);
+	-moz-filter: brightness(90%);
 	filter: url(#brightness); /* required for FF */
 	filter: brightness(90%);
 }
@@ -42,9 +41,24 @@ section {
 	color: #FFF;
 	font-size: 200%;
 	font-weight: lighter;
+	z-index: 2;
 }
 #padding {
 	height: 200%;
+}
+#bg1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background: url("../images/circuit_board.jpg") center center;
+	-webkit-filter: brightness(200%);
+	-webkit-filter: contrast(90%);
+	filter: brightness(200%);
+	opacity: 0.5;
+	z-index: -1;
 }
 #chart {
 	width: 75%;
@@ -56,6 +70,8 @@ section {
 	display: flex;
 	-webkit-align-items: flex-start;
 	-webkit-justify-content: flex-start;
+	z-index: 1;
+
 	& > div {
 		height: 100%;
 		width: 50%;
