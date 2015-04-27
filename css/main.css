@@ -312,3 +312,16 @@ section {
     .cols .col.left {
       -webkit-justify-content: flex-end;
       text-align: right; }
+
+#cellphone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: 100%;
+  width: auto; }
+
+#case {
+  position: absolute;
+  top: 400%;
+  height: 100%;
+  width: auto; }

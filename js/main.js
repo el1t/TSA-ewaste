@@ -8,7 +8,8 @@ $(document).ready(function() {
 	var sliderZoom = new TimelineLite({paused:true})
 		.to(image, 1, {zoom:zoomDepth})
 		.to($("#start"), 0.1, {css: {autoAlpha: "0", display: "none"}}, 0)
-		.to(image, 0.5, {opacity:0});
+		.to(image, 0.5, {autoAlpha:"0"})
+		.set(image, {css: {display: "none"}});
 
 	var scrollTop = $window.scrollTop();
 	$window.on("scroll", function() {
@@ -64,17 +65,17 @@ $(document).ready(function() {
 		}]
 	});
 
-	var scrollController = new ScrollMagic.Controller();
+	var controller = new ScrollMagic.Controller();
 	new ScrollMagic.Scene({
 		triggerElement: '#pin', // starting scene, when reaching this element
 		triggerHook: 'onLeave',
 		duration: windowHeight  // length in pixels
 	}).setPin('#pin')   // pin this element
-		.addTo(scrollController);
+		.addTo(controller);
 	// Event to switch pie chart
 	new ScrollMagic.Scene({
 		triggerElement: '#section2',
-		duration: 0,
+		duration: 0
 	}).on('enter',function () {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.create[i], false);
@@ -85,5 +86,20 @@ $(document).ready(function() {
 			point.update(chartData.discard[i], false);
 		});
 		pie.redraw();
-	}).addTo(scrollController);
+	}).addTo(controller);
+
+	// Parallax
+	var phone = $("#cellphone");
+	phone.on("load", function() {
+		phone.css("left", -phone.width() / 3 + "px");
+	});
+	var parallax = new TimelineLite()
+		.fromTo(phone, 1, {top: "0"}, {top: "-100%"});
+	new ScrollMagic.Scene({
+		triggerElement: "#case",
+		triggerHook: "onCenter",
+		duration: windowHeight * 2
+	}).setTween(parallax)
+		.setPin("#case")
+		.addTo(controller);
 });
