@@ -20,6 +20,8 @@ section {
 	width: 100%;
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
+	position: relative;
+	z-index: 1;
 	.content {
 		max-width: 90%;
 		text-align: center;

@@ -265,7 +265,9 @@ section {
   height: 100%;
   width: 100%;
   -webkit-align-items: center;
-  -webkit-justify-content: center; }
+  -webkit-justify-content: center;
+  position: relative;
+  z-index: 1; }
   section .content {
     max-width: 90%;
     text-align: center; }

@@ -60,6 +60,7 @@ $(document).ready(function() {
 		triggerElement: "#section3",
 		triggerHook: "onEnter",
 		duration: windowHeight
+	}).on("enter",function() {
 	}).setTween(new TimelineLite().to(
 		$("#colorslider"), 1, {css: {top: "-=100%"}}
 	)).addTo(controller);
@@ -214,7 +215,7 @@ $(document).ready(function() {
 	}).setTween(new TimelineLite().fromTo(
 		smog, 1, {css: {opacity: "0"}}, {css: {opacity: "1"}}
 	)).addTo(controller)
-	
+
 	new ScrollMagic.Scene({
 		triggerElement: "#smogenter",
 		triggerHook: 0,//"onCenter",
