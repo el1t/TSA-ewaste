@@ -31,10 +31,6 @@ section {
 	height: 100%;
 	z-index: 1;
 	background: url("../images/picture-064.jpg") center center;
-	-webkit-filter: brightness(90%);
-	-moz-filter: brightness(90%);
-	filter: url(#brightness); /* required for FF */
-	filter: brightness(90%);
 }
 #start {
 	position: fixed;
@@ -46,19 +42,23 @@ section {
 #padding {
 	height: 200%;
 }
-#bg1 {
-	position: absolute;
-	top: 100%;
+%bg {
+	position: fixed;
+	top: 0;
 	left: 0;
-	height: 100%;
 	width: 100%;
+	z-index: -1;
+}
+#bg1 {
+	@extend %bg;
+	height: 118%;   // aspect ratio of image
 	background: url("../images/circuit_board.jpg") center top;
 	background-size: 100% auto;
-	-webkit-filter: brightness(200%);
-	-webkit-filter: contrast(90%);
-	filter: brightness(200%);
 	opacity: 0.5;
-	z-index: -1;
+}
+#bg2 {
+	@extend %bg;
+
 }
 #chart {
 	width: 75%;
@@ -87,9 +87,16 @@ section {
 		}
 	}
 }
+#colorslider {
+	position: absolute;
+	top: 400%;
+	left: 0;
+	background-color: #01b6ea;
+	z-index: 5;
+}
 #case {
 	position: absolute;
-	top: 425%;
+	top: 525%;
 	height: 100%;
 	width: auto;
 	#cellphone {

@@ -7,29 +7,37 @@ $(document).ready(function() {
 	var image = $("#slider");
 	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
 	var sliderZoom = new TimelineLite({paused:true})
-		.to(image, 1, {zoom:zoomDepth})
+		.to(image, 1, {zoom:zoomDepth, force3D: true})
 		.to($("#start"), 0.1, {css: {autoAlpha: "0", display: "none"}}, 0)
-		.to(image, 0.5, {autoAlpha:"0"})
+		.to(image, 0.5, {autoAlpha:"0", force3D: true})
 		.set(image, {css: {display: "none"}});
 
+	// Manually handle zoom animation for interpolation and performance
 	var scrollTop = $window.scrollTop();
 	$window.on("scroll", function() {
 		scrollTop = $window.scrollTop();
 		var scrollPercent = scrollTop / (windowHeight);
-		if(scrollPercent >= 0) {
+		if(scrollPercent >= 0 && (sliderZoom.progress() < 1 || scrollPercent <= 1.5)) {
 			TweenLite.to(sliderZoom.pause(), 0.1, {time: scrollPercent});
 		}
 	});
 
-	// Pin first background for 3 screens
+	// Parallax first background
 	new ScrollMagic.Scene({
-		triggerElement: "#bg1",
-		triggerHook: "onLeave",
+		offset: windowHeight,
 		duration: windowHeight * 2
 	}).setTween(new TimelineLite().to(
-		$("#bg1"), 1, {css: {backgroundPosition: "center bottom"}}, 0
-	)).setPin("#bg1")
-		.addTo(controller);
+		$("#bg1"), 1, {css: {top: "-18%"}}
+	)).addTo(controller);
+
+	// Shift color bg up fast
+	new ScrollMagic.Scene({
+		triggerElement: "#section3",
+		triggerHook: "onEnter",
+		duration: windowHeight
+	}).setTween(new TimelineLite().to(
+		$("#colorslider"), 1, {css: {top: "-=100%"}}
+	)).addTo(controller);
 
 	// Chart setup
 	var chartData = {
@@ -54,7 +62,7 @@ $(document).ready(function() {
 				"China",
 				"India", 
 				"Japan",
-				"Russia",
+				"Russia"
 			],
 			values: [
 				10.3,
@@ -62,13 +70,13 @@ $(document).ready(function() {
 				8.0,
 				3.0,
 				3.0,
-				1.6,
+				1.6
 			]
 		}
 	};
 
-	pie = undefined;
-	bar = undefined;
+	var pie = undefined,
+		bar = undefined;
 	// Animate chart creation, but only once
 	new ScrollMagic.Scene({
 		triggerElement: "#pin",
@@ -143,25 +151,25 @@ $(document).ready(function() {
 				renderTo: "barchart"
 			},
 			title: {
-				text: 'E-Waste Production by Country',
+				text: 'E-Waste Production by Country'
 			},
 			tooltip: {
 				valueSuffix: " million"
 			},
 			xAxis: {
-				categories: chartData.countries.names,
+				categories: chartData.countries.names
 			},
 			yAxis: {
 				min: 0,
 				title: {
 					text: 'Discards (Million Tons)',
-					align: 'high',
+					align: 'high'
 				}
 			},
 			plotOptions: {
 				bar: {
 					dataLabels: {
-						enabled: true,
+						enabled: true
 					}
 				}
 			},

@@ -274,12 +274,7 @@ section {
   width: 100%;
   height: 100%;
   z-index: 1;
-  background: url("../images/picture-064.jpg") center center;
-  -webkit-filter: brightness(90%);
-  -moz-filter: brightness(90%);
-  filter: url(#brightness);
-  /* required for FF */
-  filter: brightness(90%); }
+  background: url("../images/picture-064.jpg") center center; }
 
 #start {
   position: fixed;
@@ -291,19 +286,18 @@ section {
 #padding {
   height: 200%; }
 
-#bg1 {
-  position: absolute;
-  top: 100%;
+#bg1, #bg2 {
+  position: fixed;
+  top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
+  z-index: -1; }
+
+#bg1 {
+  height: 118%;
   background: url("../images/circuit_board.jpg") center top;
   background-size: 100% auto;
-  -webkit-filter: brightness(200%);
-  -webkit-filter: contrast(90%);
-  filter: brightness(200%);
-  opacity: 0.5;
-  z-index: -1; }
+  opacity: 0.5; }
 
 #chart {
   width: 75%;
@@ -328,9 +322,16 @@ section {
       -webkit-justify-content: flex-end;
       text-align: right; }
 
+#colorslider {
+  position: absolute;
+  top: 400%;
+  left: 0;
+  background-color: #01b6ea;
+  z-index: 5; }
+
 #case {
   position: absolute;
-  top: 425%;
+  top: 525%;
   height: 100%;
   width: auto; }
   #case #cellphone {
