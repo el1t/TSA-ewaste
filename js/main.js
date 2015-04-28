@@ -218,14 +218,21 @@ $(document).ready(function() {
 
 	new ScrollMagic.Scene({
 		triggerElement: "#smogenter",
-		triggerHook: 0,//"onCenter",
-		duration: windowHeight * 3
+		triggerHook: 1,//"onCenter",
+		duration: windowHeight * 4
 	}).on("enter", function() {
 		smog.addClass("fixed")
 	}).on("leave", function() {
 		smog.removeClass("fixed")
 	}).addTo(controller);
 
+	new ScrollMagic.Scene({
+		triggerElement: "#smogleave",
+		triggerHook: "onLeave",
+		duration: windowHeight,
+	}).setTween(new TimelineLite().fromTo(
+		smog, 1, {css: {opacity: "1"}}, {css: {opacity: "0"}}
+	)).addTo(controller)
 	// Parallax phone
 	var phone = $("#cellphone");
 	phone.on("load", function() {
