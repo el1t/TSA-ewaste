@@ -25,9 +25,9 @@ $(document).ready(function() {
 	new ScrollMagic.Scene({
 		triggerElement: "#bg1",
 		triggerHook: "onLeave",
-		duration: windowHeight * 2
+		duration: windowHeight * 2.5
 	}).setTween(new TimelineLite().to(
-		$("#bg1"), 1, {css: {backgroundPosition: "center bottom"}}, 0
+		$("#bg1"), 1, {css: {backgroundPosition: "center bottom"}, force3D:true}, 0
 	)).setPin("#bg1")
 		.addTo(controller);
 
@@ -46,29 +46,10 @@ $(document).ready(function() {
 			['Hard Drives', 33],
 			['Peripherals', 10],
 			['Mobile Devices', 11]
-		],
-		countries: {
-			names: [
-				"USA",
-				"EU Nations",
-				"China",
-				"India", 
-				"Japan",
-				"Russia",
-			],
-			values: [
-				10.3,
-				10.9,
-				8.0,
-				3.0,
-				3.0,
-				1.6,
-			]
-		}
+		]
 	};
 
-	pie = undefined;
-	bar = undefined;
+	var pie = undefined;
 	// Animate chart creation, but only once
 	new ScrollMagic.Scene({
 		triggerElement: "#pin",
@@ -120,70 +101,15 @@ $(document).ready(function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.create[i], false);
 		});
-		pie.series[0].tooltipOptions.valueSuffix = "%"
-		pie.series[0].name = "Percentage Recycled"
+		pie.series[0].tooltipOptions.valueSuffix = "%";
+		pie.series[0].name = "Percentage Recycled";
 		pie.redraw();
 	}).on("leave", function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.discard[i], false);
 		});
-		pie.series[0].tooltipOptions.valueSuffix = "k"
-		pie.series[0].name = "Tons Discarded"
+		pie.series[0].tooltipOptions.valueSuffix = "k";
+		pie.series[0].name = "Tons Discarded";
 		pie.redraw();
 	}).addTo(controller);
-
-	new ScrollMagic.Scene({
-		triggerElement: "#section3",
-		triggerHook: "onCenter",
-		duration: 0
-	}).on("enter", function() {
-		bar = bar || new Highcharts.Chart({
-			chart: {
-				type: 'bar',
-				renderTo: "barchart"
-			},
-			title: {
-				text: 'E-Waste Production by Country',
-			},
-			tooltip: {
-				valueSuffix: " million"
-			},
-			xAxis: {
-				categories: chartData.countries.names,
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: 'Discards (Million Tons)',
-					align: 'high',
-				}
-			},
-			plotOptions: {
-				bar: {
-					dataLabels: {
-						enabled: true,
-					}
-				}
-			},
-			series: [{
-				name: "Top Countries",
-				data: chartData.countries.values
-			}]
-		})
-	}).addTo(controller);
-
-	// Parallax phone
-	var phone = $("#cellphone");
-	phone.on("load", function() {
-		phone.css("left", -phone.width() / 3 + "px");
-	});
-	var parallax = new TimelineLite()
-		.fromTo(phone, 1, {top: "0"}, {top: "-100%"});
-	new ScrollMagic.Scene({
-		triggerElement: "#case",
-		triggerHook: "onCenter",
-		duration: windowHeight * 2
-	}).setTween(parallax)
-		.setPin("#case")
-		.addTo(controller);
 });
