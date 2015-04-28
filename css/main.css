@@ -373,7 +373,7 @@ section {
   #smogenter .content {
     max-width: 100% !important;
     width: 100%;
-    top: 0px;
+    top: -50px;
     position: absolute;
     left: 0px; }
     #smogenter .content .bg-enter {
