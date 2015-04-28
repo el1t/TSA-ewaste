@@ -60,6 +60,7 @@ $(document).ready(function() {
 		triggerElement: "#section3",
 		triggerHook: "onEnter",
 		duration: windowHeight
+	}).on("enter",function() {
 	}).setTween(new TimelineLite().to(
 		$("#colorslider"), 1, {css: {top: "-=100%"}}
 	)).addTo(controller);
@@ -203,8 +204,35 @@ $(document).ready(function() {
 				data: chartData.countries.values
 			}]
 		})
+		$("#section3 .enter").css("left","0px")
 	}).addTo(controller);
 
+	smog = $("#smogenter .content")
+	new ScrollMagic.Scene({
+		triggerElement: "#smogenter",
+		triggerHook: "onEnter",
+		duration: windowHeight
+	}).setTween(new TimelineLite().fromTo(
+		smog, 1, {css: {opacity: "0"}}, {css: {opacity: "1"}}
+	)).addTo(controller)
+
+	new ScrollMagic.Scene({
+		triggerElement: "#smogenter",
+		triggerHook: 1,//"onCenter",
+		duration: windowHeight * 4
+	}).on("enter", function() {
+		smog.addClass("fixed")
+	}).on("leave", function() {
+		smog.removeClass("fixed")
+	}).addTo(controller);
+
+	new ScrollMagic.Scene({
+		triggerElement: "#smogleave",
+		triggerHook: "onLeave",
+		duration: windowHeight,
+	}).setTween(new TimelineLite().fromTo(
+		smog, 1, {css: {opacity: "1"}}, {css: {opacity: "0"}}
+	)).addTo(controller)
 	// Parallax phone
 	var phone = $("#cellphone");
 	phone.on("load", function() {

@@ -20,6 +20,8 @@ section {
 	width: 100%;
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
+	position: relative;
+	z-index: 1;
 	.content {
 		max-width: 90%;
 		text-align: center;
@@ -123,4 +125,36 @@ section {
 #barchart {
 	width:90%;
 	margin-right: 5%;
+}
+
+.enter {
+	transition-duration: 1s;
+	position: relative;
+}
+
+.enter.left {
+	left: -100%;
+}
+
+#smogenter {
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	overflow: hidden;
+
+	.content {
+		max-width: 150% !important;
+		width: 150%;
+
+		.bg-enter {
+			width: 100%;
+		}
+		top: -50px;
+		position: absolute;
+		left: 0px;
+	}
+
+	.content.fixed {
+		position: fixed;
+	}
 }
