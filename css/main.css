@@ -357,3 +357,28 @@ section {
 #barchart {
   width: 90%;
   margin-right: 5%; }
+
+.enter {
+  transition-duration: 1s;
+  position: relative; }
+
+.enter.left {
+  left: -100%; }
+
+#smogenter {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  overflow: hidden; }
+  #smogenter .content {
+    max-width: 100% !important;
+    width: 100%;
+    top: 0px;
+    position: absolute;
+    left: 0px; }
+    #smogenter .content .bg-enter {
+      width: 100%; }
+  #smogenter .content.fixed {
+    position: fixed; }
+
+/*# sourceMappingURL=main.css.map */

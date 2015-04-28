@@ -203,7 +203,21 @@ $(document).ready(function() {
 				data: chartData.countries.values
 			}]
 		})
+		$("#section3 .enter").css("left","0px")
 	}).addTo(controller);
+
+	smog = $("#smogenter .content")
+	new ScrollMagic.Scene({
+		triggerElement: "#smogenter",
+		triggerHook: 0,//"onCenter",
+		duration: windowHeight * 3
+	}).on("enter", function() {
+		smog.addClass("fixed")
+	}).on("leave", function() {
+		smog.removeClass("fixed")
+	}).setTween(new TimelineLite().to(
+		smog, 1, {css: {opacity: "100%"}}
+	)).addTo(controller);
 
 	// Parallax phone
 	var phone = $("#cellphone");
