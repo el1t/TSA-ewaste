@@ -1,4 +1,29 @@
+var startTime = undefined,
+	preloader = undefined;
+$(window).load(function() {
+	$(".noscroll").each(function() {
+		$(this).removeClass("noscroll");
+	});
+	// If load time takes more than 0.5s after document ready, animate preload
+	var $preload = $("#preload");
+	if (new Date() - startTime >= 500) {
+		$preload.find("h1").text("Done!");
+		new TimelineLite()
+			.to($preload, 0.5, {css: {top: "-100%", display: "none"}}, "+=1");
+	} else {
+		clearTimeout(preloader);
+		$preload.css("display", "none");
+	}
+});
+
 $(document).ready(function() {
+	// Initialize preload timer
+	startTime = new Date();
+	preloader = setTimeout(function() {
+		// TODO: think of color for preload bg
+		$("#preload").css("background-color", "#ff0000");
+	}, 500);
+
 	var $window = $(window),
 		windowHeight = $window.height(),
 		windowWidth = $window.width(),
