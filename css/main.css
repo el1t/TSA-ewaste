@@ -340,3 +340,8 @@ section {
   top: 400%;
   height: 100%;
   width: auto; }
+
+#barchart {
+  width:90%;
+  margin-right: 5%;
+}
