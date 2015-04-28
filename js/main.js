@@ -26,7 +26,9 @@ $(document).ready(function() {
 		triggerElement: "#bg1",
 		triggerHook: "onLeave",
 		duration: windowHeight * 2
-	}).setPin("#bg1")
+	}).setTween(new TimelineLite().to(
+		$("#bg1"), 1, {css: {backgroundPosition: "center bottom"}}, 0
+	)).setPin("#bg1")
 		.addTo(controller);
 
 	// Chart setup

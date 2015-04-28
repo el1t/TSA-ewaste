@@ -48,12 +48,12 @@ section {
 }
 #bg1 {
 	position: absolute;
-	top: 0;
+	top: 100%;
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background-size: cover;
-	background: url("../images/circuit_board.jpg") center center;
+	background: url("../images/circuit_board.jpg") center top;
+	background-size: 100% auto;
 	-webkit-filter: brightness(200%);
 	-webkit-filter: contrast(90%);
 	filter: brightness(200%);
@@ -87,16 +87,20 @@ section {
 		}
 	}
 }
-#cellphone {
-	position: absolute;
-	top: 0;
-	left: 0;
-	max-height: 100%;
-	width: auto;
-}
 #case {
 	position: absolute;
-	top: 400%;
+	top: 425%;
 	height: 100%;
 	width: auto;
+	#cellphone {
+		position: absolute;
+		top: 0;
+		left: 0;
+		max-height: 100%;
+		width: auto;
+	}
+}
+#barchart {
+	width:90%;
+	margin-right: 5%;
 }
