@@ -8,8 +8,12 @@ $(window).load(function() {
 	var $preload = $("#preload");
 	if (new Date() - startTime >= 500) {
 		$preload.find("h1").text("Done!");
-		new TimelineLite()
-			.to($preload, 0.5, {css: {top: "-100%", display: "none"}}, "+=1");
+		setTimeout(function() {
+			$preload.addClass("gone");
+			setTimeout(function() {
+				$preload.css("display", "none");
+			}, 750);
+		}, 1000);
 	} else {
 		clearTimeout(preloader);
 		$preload.css("display", "none");
@@ -32,9 +36,9 @@ $(document).ready(function() {
 	var image = $("#slider");
 	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
 	var sliderZoom = new TimelineLite({paused:true})
-		.to(image, 1, {zoom:zoomDepth, force3D: true})
+		.to(image, 1, {zoom:zoomDepth, ease: Linear.easeNone, force3D: true})
 		.to($("#start"), 0.1, {css: {autoAlpha: "0", display: "none"}}, 0)
-		.to(image, 0.5, {autoAlpha:"0", force3D: true})
+		.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
 		.set(image, {css: {display: "none"}});
 
 	// Manually handle zoom animation for interpolation and performance
@@ -62,7 +66,7 @@ $(document).ready(function() {
 		duration: windowHeight
 	}).on("enter",function() {
 	}).setTween(new TimelineLite().to(
-		$("#colorslider"), 1, {css: {top: "-=100%"}}
+		$("#colorslider"), 1, {css: {top: "-=100%", ease: Linear.easeNone}}
 	)).addTo(controller);
 
 	// Chart setup
@@ -239,7 +243,7 @@ $(document).ready(function() {
 		phone.css("left", -phone.width() / 3 + "px");
 	});
 	var parallax = new TimelineLite()
-		.fromTo(phone, 1, {top: "0"}, {top: "-100%"});
+		.fromTo(phone, 1, {top: "0"}, {top: "-100%", ease: Linear.easeNone});
 	new ScrollMagic.Scene({
 		triggerElement: "#case",
 		triggerHook: "onCenter",

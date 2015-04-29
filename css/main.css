@@ -275,12 +275,19 @@ section {
     padding: 0; }
 
 #preload {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   color: #FFF;
   font-size: 200%;
-  z-index: 999; }
+  z-index: 999;
+  transition: height 0.5s linear; }
+  #preload.gone {
+    height: 0; }
+    #preload.gone h1 {
+      opacity: 0; }
+  #preload h1 {
+    transition: opacity 0.25s linear; }
 
 #slider {
   position: fixed;
@@ -382,5 +389,3 @@ section {
       width: 100%; }
   #smogenter .content.fixed {
     position: fixed; }
-
-/*# sourceMappingURL=main.css.map */
