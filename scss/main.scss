@@ -68,14 +68,14 @@ section {
 	height: 200%;
 }
 %bg {
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 100%;
 	z-index: -1;
+	left: 0;
 }
 #bg1 {
 	@extend %bg;
+	position: fixed;
+	top: 0;
 	height: 118%;   // aspect ratio of image
 	background: url("../images/circuit_board.jpg") center top;
 	background-size: 100% auto;
@@ -84,6 +84,24 @@ section {
 #bg2 {
 	@extend %bg;
 
+}
+#bg3-container {
+	position: absolute;
+	top: 700%;
+	left: 0;
+	height: 200%;
+	width: 100%;
+	z-index: 1
+}
+#bg3 {
+	//@extend %bg;
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	//visibility: hidden;
+	height: auto;
+	width: 100%;
 }
 #chart {
 	width: 75%;
@@ -136,35 +154,13 @@ section {
 	width:90%;
 	margin-right: 5%;
 }
-
-.enter {
-	transition-duration: 1s;
-	position: relative;
-}
-
-.enter.left {
-	left: -100%;
-}
-
-#smogenter {
-	position: absolute;
-	width: 100%;
-	left: 0px;
-	overflow: hidden;
-
-	.content {
-		max-width: 150% !important;
-		width: 150%;
-
-		.bg-enter {
-			width: 100%;
+#section3 {
+	.left {
+		transition-duration: 1s;
+		position: relative;
+		left: -100%;
+		&.active {
+			left: 0;
 		}
-		top: -50px;
-		position: absolute;
-		left: 0px;
-	}
-
-	.content.fixed {
-		position: fixed;
 	}
 }

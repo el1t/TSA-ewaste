@@ -309,17 +309,33 @@ section {
   height: 200%; }
 
 #bg1, #bg2 {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  z-index: -1; }
+  z-index: -1;
+  left: 0; }
 
 #bg1 {
+  position: fixed;
+  top: 0;
   height: 118%;
   background: url("../images/circuit_board.jpg") center top;
   background-size: 100% auto;
   opacity: 0.5; }
+
+#bg3-container {
+  position: absolute;
+  top: 700%;
+  left: 0;
+  height: 200%;
+  width: 100%;
+  z-index: 1; }
+
+#bg3 {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%; }
 
 #chart {
   width: 75%;
@@ -367,25 +383,9 @@ section {
   width: 90%;
   margin-right: 5%; }
 
-.enter {
+#section3 .left {
   transition-duration: 1s;
-  position: relative; }
-
-.enter.left {
+  position: relative;
   left: -100%; }
-
-#smogenter {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  overflow: hidden; }
-  #smogenter .content {
-    max-width: 150% !important;
-    width: 150%;
-    top: -50px;
-    position: absolute;
-    left: 0px; }
-    #smogenter .content .bg-enter {
-      width: 100%; }
-  #smogenter .content.fixed {
-    position: fixed; }
+  #section3 .left.active {
+    left: 0; }

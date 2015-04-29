@@ -35,21 +35,20 @@ $(document).ready(function() {
 
 	var image = $("#slider");
 	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
-	var sliderZoom = new TimelineLite({paused:true})
+	var sliderZoom = new TimelineLite({paused: true})
 		.to(image, 1, {zoom:zoomDepth, ease: Linear.easeNone, force3D: true})
 		.to($("#start"), 0.1, {css: {autoAlpha: "0", display: "none"}}, 0)
 		.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
 		.set(image, {css: {display: "none"}});
 
 	// Manually handle zoom animation for interpolation and performance
-	var scrollTop = $window.scrollTop();
 	$window.on("scroll", function() {
-		scrollTop = $window.scrollTop();
-		var scrollPercent = scrollTop / (windowHeight);
+		var scrollPercent = $window.scrollTop() / (windowHeight);
 		if(scrollPercent >= 0 && (sliderZoom.progress() < 1 || scrollPercent <= 1.5)) {
 			TweenLite.to(sliderZoom.pause(), 0.1, {time: scrollPercent});
 		}
 	});
+
 
 	// Parallax first background
 	new ScrollMagic.Scene({
@@ -66,7 +65,7 @@ $(document).ready(function() {
 		duration: windowHeight
 	}).on("enter",function() {
 	}).setTween(new TimelineLite().to(
-		$("#colorslider"), 1, {css: {top: "-=100%", ease: Linear.easeNone}}
+		$("#colorslider"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
 	)).addTo(controller);
 
 	// Chart setup
@@ -158,15 +157,15 @@ $(document).ready(function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.create[i], false);
 		});
-		pie.series[0].tooltipOptions.valueSuffix = "%"
-		pie.series[0].name = "Percentage Recycled"
+		pie.series[0].tooltipOptions.valueSuffix = "%";
+		pie.series[0].name = "Percentage Recycled";
 		pie.redraw();
 	}).on("leave", function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.discard[i], false);
 		});
-		pie.series[0].tooltipOptions.valueSuffix = "k"
-		pie.series[0].name = "Tons Discarded"
+		pie.series[0].tooltipOptions.valueSuffix = "k";
+		pie.series[0].name = "Tons Discarded";
 		pie.redraw();
 	}).addTo(controller);
 
@@ -207,36 +206,31 @@ $(document).ready(function() {
 				name: "Top Countries",
 				data: chartData.countries.values
 			}]
-		})
-		$("#section3 .enter").css("left","0px")
+		});
+		$("#section3").find(".left").addClass("active");
 	}).addTo(controller);
 
-	smog = $("#smogenter .content")
+	// Parallax cloud background
+	//var cloudParallax = new TimelineLite()
+	//	.fromTo($("#bg3"), 0.5, {css: {autoAlpha: 0}}, {css: {autoAlpha: 1}})
+		//.to($("#bg3"), 1, {css: {top: 0}}, 0)
+		//.to($("#bg3"), 1, {css: {top: "-100%"}}, "+=1")
+		//.to($("#bg3"), 0.5, {css: {autoAlpha: 0}}, 3.5);
+		//.to($("#bg3"), 1, {css: {top: "-200%"}});
 	new ScrollMagic.Scene({
-		triggerElement: "#smogenter",
+		triggerElement: "#smog",
 		triggerHook: "onEnter",
-		duration: windowHeight
-	}).setTween(new TimelineLite().fromTo(
-		smog, 1, {css: {opacity: "0"}}, {css: {opacity: "1"}}
-	)).addTo(controller)
-
+		duration: windowHeight * 1
+	}).setTween("#bg3", {css: {autoAlpha: 1}})
+		.addTo(controller);
 	new ScrollMagic.Scene({
-		triggerElement: "#smogenter",
-		triggerHook: 1,//"onCenter",
-		duration: windowHeight * 4
-	}).on("enter", function() {
-		smog.addClass("fixed")
-	}).on("leave", function() {
-		smog.removeClass("fixed")
-	}).addTo(controller);
-
-	new ScrollMagic.Scene({
-		triggerElement: "#smogleave",
+		triggerElement: "#bg3-container",
 		triggerHook: "onLeave",
-		duration: windowHeight,
-	}).setTween(new TimelineLite().fromTo(
-		smog, 1, {css: {opacity: "1"}}, {css: {opacity: "0"}}
-	)).addTo(controller)
+		duration: windowHeight * 4
+	}).setTween("#bg3", {css: {top: "-100%"}, ease: Linear.easeNone})
+		.setPin("#bg3-container")
+		.addTo(controller);
+
 	// Parallax phone
 	var phone = $("#cellphone");
 	phone.on("load", function() {
