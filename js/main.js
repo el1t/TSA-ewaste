@@ -25,7 +25,7 @@ $(document).ready(function() {
 	startTime = new Date();
 	preloader = setTimeout(function() {
 		// TODO: think of color for preload bg
-		$("#preload").css("background-color", "#ff0000");
+		$("#preload").css("background-color", "#333");
 	}, 500);
 
 	var $window = $(window),
@@ -176,11 +176,11 @@ $(document).ready(function() {
 	}).on("enter", function() {
 		bar = bar || new Highcharts.Chart({
 			chart: {
-				type: 'bar',
+				type: "bar",
 				renderTo: "barchart"
 			},
 			title: {
-				text: 'E-Waste Production by Country'
+				text: "E-Waste Production by Country"
 			},
 			tooltip: {
 				valueSuffix: " million"
@@ -191,7 +191,7 @@ $(document).ready(function() {
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Discards (Million Tons)',
+					text: "Discards (Million Tons)",
 					align: 'high'
 				}
 			},

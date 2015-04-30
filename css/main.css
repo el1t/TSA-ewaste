@@ -14,6 +14,9 @@
  * These selection rule sets have to be separate.
  * Customize the background color to match your design.
  */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none; }
 ::selection {
   background: #b3d4fc;
   text-shadow: none; }
@@ -134,10 +137,6 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */ }
-@media print, (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */ }
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
@@ -149,57 +148,48 @@ textarea {
   *:after {
     background: transparent !important;
     color: #000 !important;
-    		                        /* Black prints faster:
-                                       http://www.sanbeiji.com/archives/953 */
+    /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
     box-shadow: none !important;
     text-shadow: none !important; }
-
   a,
   a:visited {
     text-decoration: underline; }
-
   a[href]:after {
     content: " (" attr(href) ")"; }
-
   abbr[title]:after {
     content: " (" attr(title) ")"; }
-
   /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
+	 * Don't show links that are fragment identifiers,
+	 * or use the `javascript:` pseudo protocol
+	 */
   a[href^="#"]:after,
   a[href^="javascript:"]:after {
     content: ""; }
-
   pre,
   blockquote {
     border: 1px solid #999;
     page-break-inside: avoid; }
-
   /*
-   * Printing Tables:
-   * http://css-discuss.incutio.com/wiki/Printing_Tables
-   */
+	 * Printing Tables:
+	 * http://css-discuss.incutio.com/wiki/Printing_Tables
+	 */
   thead {
     display: table-header-group; }
-
   tr,
   img {
     page-break-inside: avoid; }
-
   img {
     max-width: 100% !important; }
-
   p,
   h2,
   h3 {
     orphans: 3;
     widows: 3; }
-
   h2,
   h3 {
     page-break-after: avoid; } }
+
 html {
   box-sizing: border-box; }
 
@@ -255,7 +245,6 @@ body {
 section {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;
   /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;
   /* IE 10 */
@@ -281,13 +270,68 @@ section {
   color: #FFF;
   font-size: 200%;
   z-index: 999;
-  transition: height 0.5s linear; }
+  -webkit-transition: height 0.5s linear;
+          transition: height 0.5s linear; }
   #preload.gone {
     height: 0; }
-    #preload.gone h1 {
+    #preload.gone .content {
       opacity: 0; }
-  #preload h1 {
-    transition: opacity 0.25s linear; }
+  #preload .content {
+    -webkit-transition: opacity 0.25s linear;
+            transition: opacity 0.25s linear; }
+    #preload .content h1 {
+      padding-bottom: 3rem; }
+  #preload #loading {
+    -webkit-animation: spinner 1.4s linear infinite; }
+    #preload #loading #spinner {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+          -ms-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite;
+      stroke: #FFF; }
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); } }
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); } }
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg); } }
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg); } }
 
 #slider {
   position: fixed;
@@ -344,6 +388,8 @@ section {
 .cols {
   display: -ms-flex;
   display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-align-items: flex-start;
   -webkit-justify-content: flex-start;
@@ -354,6 +400,8 @@ section {
   .cols .col {
     display: -ms-flex;
     display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     -webkit-align-items: center; }
     .cols .col.left {
@@ -384,7 +432,8 @@ section {
   margin-right: 5%; }
 
 #section3 .left {
-  transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
   position: relative;
   left: -100%; }
   #section3 .left.active {
