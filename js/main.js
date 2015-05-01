@@ -231,6 +231,14 @@ $(document).ready(function() {
 		.setPin("#bg3-container")
 		.addTo(controller);
 
+	new ScrollMagic.Scene({
+		triggerElement: "#smog",
+		triggerHook: "onCenter",
+		duration: 0
+	}).on("enter", function() {
+		console.log("enter")
+		$(".fadein").css("opacity",1)
+	}).addTo(controller);
 	// Parallax phone
 	var phone = $("#cellphone");
 	phone.on("load", function() {
