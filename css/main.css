@@ -233,6 +233,25 @@ body {
 .noscroll {
   overflow: hidden; }
 
+#home {
+  display: block;
+  position: fixed;
+  width: 4em;
+  height: 4em;
+  right: 1.5em;
+  bottom: 1.5em;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 4em;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.1s linear;
+          transition: opacity 0.1s linear; }
+  #home:hover {
+    opacity: 1; }
+
 section {
   display: -webkit-box;
   display: -webkit-flex;
@@ -250,19 +269,24 @@ section {
           justify-content: center;
   position: relative;
   z-index: 1; }
+  section.left-justify {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding: 2rem; }
   section .content {
     max-width: 90%;
     text-align: center; }
-  section h1 {
-    padding: 0; }
-    section h1 b {
-      text-transform: uppercase;
-      font-size: 75%; }
-      section h1 b.large {
-        font-size: 90%; }
-  section h2 b {
+  section .footnote {
+    position: absolute;
+    padding: 0.25rem;
     text-transform: uppercase;
     font-size: 75%; }
+  section b {
+    text-transform: uppercase; }
+    section b.large {
+      font-size: 100%; }
 
 #preload {
   position: absolute;
@@ -363,7 +387,7 @@ section {
 
 #bg1, #bg2 {
   width: 100%;
-  z-index: -1;
+  z-index: -5;
   left: 0; }
 
 #bg1 {
@@ -392,7 +416,8 @@ section {
 
 #chart {
   width: 75%;
-  height: 75%; }
+  height: 75%;
+  z-index: 1; }
 
 .cols {
   display: -webkit-box;
@@ -421,15 +446,21 @@ section {
         -ms-flex-align: center;
             align-items: center; }
     .cols .col.left {
+      position: relative;
       -webkit-box-pack: end;
       -webkit-justify-content: flex-end;
           -ms-flex-pack: end;
               justify-content: flex-end;
       text-align: right; }
+      .cols .col.left .footnote {
+        right: 1rem; }
+
+#section2 {
+  z-index: 0; }
 
 #colorslider {
   position: absolute;
-  top: 400%;
+  top: 500%;
   left: 0;
   background-color: #01b6ea;
   z-index: 5; }
@@ -461,13 +492,11 @@ section {
 #smog .col.left {
   padding: 1em; }
 
-#smog .col.right > div {
+#smog #smog-image {
   padding: 1em;
   width: 100%;
-  opacity: 0;
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s; }
-  #smog .col.right > div img {
+  visibility: hidden; }
+  #smog #smog-image img {
     width: 100%; }
 
 #health .col.left {
@@ -483,20 +512,34 @@ section {
 #health .col.right {
   padding-left: 1em; }
 
-#pirate > div {
-  padding: 40px;
+#pirate {
+  padding: 3em;
   background: #000;
   color: #fff;
-  max-width: 65%; }
+  border-radius: 2em; }
 
 h1 {
   font-size: 300%;
-  font-weight: 300; }
+  font-weight: 300;
+  margin: 1.5rem 0; }
 
 h2 {
-  font-size: 150%;
-  font-weight: 400; }
+  font-size: 250%;
+  font-weight: 300;
+  margin: 1.25rem 0; }
 
 h3 {
-  font-size: 125%;
-  font-weight: 400; }
+  font-size: 175%;
+  font-weight: 400;
+  margin: 1rem 0; }
+
+h4 {
+  font-size: 150%;
+  font-weight: 400;
+  margin: 1rem 0; }
+
+p {
+  text-indent: 3em;
+  font-size: 175%;
+  font-weight: 400;
+  color: #333; }

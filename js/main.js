@@ -38,7 +38,7 @@ $(document).ready(function() {
 	var sliderZoom = new TimelineLite({paused: true})
 		.to(image, 1, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true})
 		.to($("#title"), 0.1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
-		.to($("#start"), 1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
+		.to($("#start"), 1, {css: {autoAlpha: "0", display: "none"}}, 0)
 		.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
 		.set(image, {css: {display: "none"}});
 
@@ -56,15 +56,14 @@ $(document).ready(function() {
 		offset: windowHeight,
 		duration: windowHeight * 2
 	}).setTween(new TimelineLite().to(
-		$("#bg1"), 1, {css: {top: "-18%"}}
+		$("#bg1"), 1, {css: {top: "-18%"}, ease: Linear.easeNone}
 	)).addTo(controller);
 
 	// Shift color bg up fast
 	new ScrollMagic.Scene({
 		triggerElement: "#section3",
-		triggerHook: "onEnter",
+		triggerHook: "onLeave",
 		duration: windowHeight
-	}).on("enter",function() {
 	}).setTween(new TimelineLite().to(
 		$("#colorslider"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
 	)).addTo(controller);
@@ -221,7 +220,7 @@ $(document).ready(function() {
 	new ScrollMagic.Scene({
 		triggerElement: "#smog",
 		triggerHook: "onEnter",
-		duration: windowHeight * 1
+		duration: windowHeight
 	}).setTween("#bg3", {css: {autoAlpha: 1}})
 		.addTo(controller);
 	new ScrollMagic.Scene({
@@ -236,14 +235,15 @@ $(document).ready(function() {
 		triggerElement: "#smog",
 		triggerHook: "onCenter",
 		duration: 0
-	}).on("enter", function() {
-		console.log("enter")
-		$(".fadein").css("opacity",1)
-	}).addTo(controller);
+	}).setTween("#smog-image", 1, {css: {autoAlpha: 1}, ease: Linear.easeNone})
+		.addTo(controller);
+
 	// Parallax phone
 	var phone = $("#cellphone");
 	phone.on("load", function() {
 		phone.css("left", -phone.width() / 3 + "px");
+		$(".phone-padding").css("margin-left", phone.width() * 2/3 + "px")
+			.css("max-width", windowWidth - phone.width() * 2/3);
 	});
 	var parallax = new TimelineLite()
 		.fromTo(phone, 1, {top: "0"}, {top: "-100%", ease: Linear.easeNone});
@@ -254,4 +254,13 @@ $(document).ready(function() {
 	}).setTween(parallax)
 		.setPin("#case")
 		.addTo(controller);
+
+	new ScrollMagic.Scene({
+		triggerElement: "#health",
+		triggerHook: "onLeave",
+		offset: windowHeight / 2
+	}).setTween(new TimelineLite()
+		.fromTo("#pirate", 0.5, {css: {zoom: 2, autoAlpha: 0}}, {css: {zoom: 1, autoAlpha: 1}})
+		.fromTo($("#pirate div"), 0.5, {css: {display: "block", autoAlpha: 0}}, {css: {autoAlpha: 1}})
+	).addTo(controller);
 });
