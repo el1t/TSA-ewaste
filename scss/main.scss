@@ -93,7 +93,7 @@ section {
 	top: 0;
 	left: 0;
 	color: #FFF;
-	background: radial-gradient(circle, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75));
+	background: radial-gradient(circle, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85));
 	z-index: 2;
 	h1 {
 		font-size: 500%;
@@ -116,7 +116,7 @@ section {
 	height: 118%;   // aspect ratio of image
 	background: url("../images/circuit_board.jpg") center top;
 	background-size: 100% auto;
-	opacity: 0.5;
+	opacity: 0.15;
 }
 #bg2 {
 	@extend %bg;
@@ -196,4 +196,16 @@ section {
 			left: 0;
 		}
 	}
+}
+h1 {
+	font-size: 300%;
+	font-weight: 300;
+}
+h2 {
+	font-size: 150%;
+	font-weight: 400;
+}
+h3 {
+	font-size: 125%;
+	font-weight: 400;
 }
