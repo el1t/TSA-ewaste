@@ -36,8 +36,9 @@ $(document).ready(function() {
 	var image = $("#slider");
 	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
 	var sliderZoom = new TimelineLite({paused: true})
-		.to(image, 1, {zoom:zoomDepth, ease: Linear.easeNone, force3D: true})
-		.to($("#start"), 0.1, {css: {autoAlpha: "0", display: "none"}}, 0)
+		.to(image, 1, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true})
+		.to($("#title"), 0.1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
+		.to($("#start"), 1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
 		.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
 		.set(image, {css: {display: "none"}});
 
