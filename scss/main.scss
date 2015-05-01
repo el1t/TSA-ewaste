@@ -24,6 +24,17 @@ section {
 	}
 	h1 {
 		padding: 0;
+		b {
+			text-transform: uppercase;
+			font-size: 75%;
+			&.large {
+				font-size: 90%;
+			}
+		}
+	}
+	h2 b {
+		text-transform: uppercase;
+		font-size: 75%;
 	}
 }
 #preload {
@@ -200,32 +211,36 @@ section {
 
 #smog {
 	.col.left {
-		padding: 20px
+		padding: 1em;
 	}
 	.col.right {
 		&>div {
+			padding: 1em;
 			width: 100%;
 			opacity: 0;
 			transition-duration: 1s;
 			img {
-				width: 90%
+				width: 100%
 			}
 		}
 	}
 }
 
 #health {
-	.col.right {
-		padding: 20px;
-	}
 	.col.left {
-		padding: 10px;
+		padding-top: 2em;
+		padding-left: 3em;
+		padding-bottom: 2em;
+		padding-right: 1em;
 		&>div {
 			width: 100%;
 			img {
 				width: 75%;
 			}
 		}
+	}
+	.col.right {
+		padding-left: 1em;
 	}
 }
 
