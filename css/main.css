@@ -269,11 +269,23 @@ section {
           justify-content: center;
   position: relative;
   z-index: 1; }
-  section.left-justify {
+  section.justify-left {
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
         -ms-flex-pack: start;
             justify-content: flex-start;
+    padding: 2rem; }
+  section.justify-right {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 2rem; }
+  section.align-bottom {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+        -ms-flex-align: end;
+            align-items: flex-end;
     padding: 2rem; }
   section .content {
     max-width: 90%;
@@ -477,6 +489,61 @@ section {
     max-height: 100%;
     width: auto; }
 
+.hex-grid ol:nth-child(2n-1) {
+  position: relative;
+  left: 5.4545454545rem; }
+
+.hex-grid ol:nth-child(2n) {
+  position: relative;
+  margin-top: 3.5em;
+  margin-bottom: 3.5em; }
+
+.hex-grid .hex {
+  position: relative;
+  width: 10.2rem;
+  height: 6rem;
+  background-color: #444;
+  display: inline-block;
+  margin-right: 0.5em;
+  -webkit-transition: all 0.1s ease-in-out;
+          transition: all 0.1s ease-in-out; }
+
+.hex-grid .hex:before, .hex-grid .hex:after {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: inherit;
+  content: ""; }
+
+.hex-grid .hex:before {
+  -webkit-transform: rotate(60deg);
+      -ms-transform: rotate(60deg);
+          transform: rotate(60deg); }
+
+.hex-grid .hex:after {
+  -webkit-transform: rotate(-60deg);
+      -ms-transform: rotate(-60deg);
+          transform: rotate(-60deg); }
+
+.hex-grid .hex:hover {
+  background: #888;
+  cursor: pointer; }
+
+.hex-grid h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 3rem;
+  z-index: 2; }
+  .hex-grid h1.small {
+    font-size: 200%; }
+
 #barchart {
   width: 90%;
   margin-right: 5%; }
@@ -543,3 +610,9 @@ p {
   font-size: 175%;
   font-weight: 400;
   color: #333; }
+
+.lift-platform {
+  position: relative; }
+
+.lift {
+  position: absolute; }
