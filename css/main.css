@@ -228,7 +228,8 @@ html {
   height: 100%; }
 
 body {
-  height: 100%; }
+  height: 100%;
+  overflow-x: hidden; }
 
 .noscroll {
   overflow: hidden; }
@@ -295,6 +296,13 @@ section {
     padding: 0.25rem;
     text-transform: uppercase;
     font-size: 75%; }
+  section a {
+    -webkit-transition: color 0.1s linear;
+            transition: color 0.1s linear; }
+    section a:link, section a:visited {
+      color: #303F9F; }
+    section a:hover {
+      color: #5C6BC0; }
   section b {
     text-transform: uppercase; }
     section b.large {
@@ -585,6 +593,30 @@ section {
   color: #fff;
   border-radius: 2em; }
 
+#padding2 {
+  height: 100%; }
+
+#colorslider2 {
+  position: absolute;
+  top: 1200%;
+  left: 0;
+  background-color: #01b6ea;
+  z-index: 5; }
+
+#colorslider3 {
+  position: absolute;
+  top: 1300%;
+  left: 0;
+  background-color: #01b6ea;
+  z-index: 5; }
+
+#colorslider4 {
+  position: absolute;
+  top: 1600%;
+  left: 0;
+  background-color: #01b6ea;
+  z-index: 5; }
+
 h1 {
   font-size: 300%;
   font-weight: 300;
@@ -610,6 +642,9 @@ p {
   font-size: 175%;
   font-weight: 400;
   color: #333; }
+  p.no-indent {
+    text-indent: 0;
+    padding: 2rem; }
 
 .lift-platform {
   position: relative; }

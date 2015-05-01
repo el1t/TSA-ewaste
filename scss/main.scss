@@ -5,6 +5,7 @@ html{
 }
 body {
 	height: 100%;
+	overflow-x: hidden;
 }
 .noscroll {
 	overflow: hidden;
@@ -57,6 +58,15 @@ section {
 		padding: 0.25rem;
 		text-transform: uppercase;
 		font-size: 75%;
+	}
+	a {
+		transition: color 0.1s linear;
+		&:link, &:visited {
+			color: #303F9F;
+		}
+		&:hover {
+			color: #5C6BC0;
+		}
 	}
 	b {
 		text-transform: uppercase;
@@ -336,6 +346,31 @@ $hex-size: 6rem;
 	color: #fff;
 	border-radius: 2em;
 }
+#padding2 {
+	height: 100%;
+}
+// FIXME: these shouldn't be referenced by id or set absolute top
+#colorslider2 {
+	position: absolute;
+	top: 1200%;
+	left: 0;
+	background-color: #01b6ea;
+	z-index: 5;
+}
+#colorslider3 {
+	position: absolute;
+	top: 1300%;
+	left: 0;
+	background-color: #01b6ea;
+	z-index: 5;
+}
+#colorslider4 {
+	position: absolute;
+	top: 1600%;
+	left: 0;
+	background-color: #01b6ea;
+	z-index: 5;
+}
 h1 {
 	font-size: 300%;
 	font-weight: 300;
@@ -361,6 +396,10 @@ p {
 	font-size: 175%;
 	font-weight: 400;
 	color: #333;
+	&.no-indent {
+		text-indent: 0;
+		padding: 2rem;
+	}
 }
 .lift-platform {
 	position: relative;

@@ -67,6 +67,30 @@ $(document).ready(function() {
 	}).setTween(new TimelineLite().to(
 		$("#colorslider"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
 	)).addTo(controller);
+	// Shift color bg 2 up fast
+	new ScrollMagic.Scene({
+		triggerElement: "#reduce",
+		triggerHook: "onEnter",
+		duration: windowHeight
+	}).setTween(new TimelineLite().to(
+			$("#colorslider2"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
+		)).addTo(controller);
+	// Shift color bg 3 up fast
+	new ScrollMagic.Scene({
+		triggerElement: "#reduce",
+		triggerHook: "onLeave",
+		duration: windowHeight
+	}).setTween(new TimelineLite().to(
+			$("#colorslider3"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
+		)).addTo(controller);
+	// Shift color bg 4 up fast
+	new ScrollMagic.Scene({
+		triggerElement: "#recycle",
+		triggerHook: "onEnter",
+		duration: windowHeight
+	}).setTween(new TimelineLite().to(
+			$("#colorslider4"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
+		)).addTo(controller);
 
 	// Chart setup
 	var chartData = {
@@ -210,13 +234,6 @@ $(document).ready(function() {
 		$("#section3").find(".left").addClass("active");
 	}).addTo(controller);
 
-	// Parallax cloud background
-	//var cloudParallax = new TimelineLite()
-	//	.fromTo($("#bg3"), 0.5, {css: {autoAlpha: 0}}, {css: {autoAlpha: 1}})
-		//.to($("#bg3"), 1, {css: {top: 0}}, 0)
-		//.to($("#bg3"), 1, {css: {top: "-100%"}}, "+=1")
-		//.to($("#bg3"), 0.5, {css: {autoAlpha: 0}}, 3.5);
-		//.to($("#bg3"), 1, {css: {top: "-200%"}});
 	new ScrollMagic.Scene({
 		triggerElement: "#smog",
 		triggerHook: "onEnter",
