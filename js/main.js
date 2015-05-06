@@ -59,39 +59,6 @@ $(document).ready(function() {
 		$("#bg1"), 1, {css: {top: "-18%"}, ease: Linear.easeNone}
 	)).addTo(controller);
 
-	// Shift color bg up fast
-	new ScrollMagic.Scene({
-		triggerElement: "#section3",
-		triggerHook: "onLeave",
-		duration: windowHeight
-	}).setTween(new TimelineLite().to(
-		$("#colorslider"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
-	)).addTo(controller);
-	// Shift color bg 2 up fast
-	new ScrollMagic.Scene({
-		triggerElement: "#reduce",
-		triggerHook: "onEnter",
-		duration: windowHeight
-	}).setTween(new TimelineLite().to(
-			$("#colorslider2"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
-		)).addTo(controller);
-	// Shift color bg 3 up fast
-	new ScrollMagic.Scene({
-		triggerElement: "#reduce",
-		triggerHook: "onLeave",
-		duration: windowHeight
-	}).setTween(new TimelineLite().to(
-			$("#colorslider3"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
-		)).addTo(controller);
-	// Shift color bg 4 up fast
-	new ScrollMagic.Scene({
-		triggerElement: "#recycle",
-		triggerHook: "onEnter",
-		duration: windowHeight
-	}).setTween(new TimelineLite().to(
-			$("#colorslider4"), 1, {css: {top: "-=100%"}, ease: Linear.easeNone}
-		)).addTo(controller);
-
 	// Chart setup
 	var chartData = {
 		discard: [
@@ -234,52 +201,6 @@ $(document).ready(function() {
 		$("#section3").find(".left").addClass("active");
 	}).addTo(controller);
 
-	new ScrollMagic.Scene({
-		triggerElement: "#smog",
-		triggerHook: "onEnter",
-		duration: windowHeight
-	}).setTween("#bg3", {css: {autoAlpha: 1}})
-		.addTo(controller);
-	new ScrollMagic.Scene({
-		triggerElement: "#bg3-container",
-		triggerHook: "onLeave",
-		duration: windowHeight * 4
-	}).setTween("#bg3", {css: {top: "-100%"}, ease: Linear.easeNone})
-		.setPin("#bg3-container")
-		.addTo(controller);
-
-	new ScrollMagic.Scene({
-		triggerElement: "#smog",
-		triggerHook: "onCenter",
-		duration: 0
-	}).setTween("#smog-image", 1, {css: {autoAlpha: 1}, ease: Linear.easeNone})
-		.addTo(controller);
-
-	// Parallax phone
-	var phone = $("#cellphone");
-	phone.on("load", function() {
-		phone.css("left", -phone.width() / 3 + "px");
-		$(".phone-padding").css("margin-left", phone.width() * 2/3 + "px")
-			.css("max-width", windowWidth - phone.width() * 2/3);
-	});
-	var parallax = new TimelineLite()
-		.fromTo(phone, 1, {top: "0"}, {top: "-100%", ease: Linear.easeNone});
-	new ScrollMagic.Scene({
-		triggerElement: "#case",
-		triggerHook: "onCenter",
-		duration: windowHeight * 2
-	}).setTween(parallax)
-		.setPin("#case")
-		.addTo(controller);
-
-	new ScrollMagic.Scene({
-		triggerElement: "#health",
-		triggerHook: "onLeave",
-		offset: windowHeight / 2
-	}).setTween(new TimelineLite()
-		.fromTo("#pirate", 0.75, {css: {zoom: 2, autoAlpha: 0}}, {css: {zoom: 1, autoAlpha: 1}})
-		.fromTo($("#pirate div"), 0.5, {css: {display: "block", autoAlpha: 0}}, {css: {autoAlpha: 1}})
-	).addTo(controller);
 
 	var $sources = $("#sources"),
 		$sourceContent = $sources.children(".content");

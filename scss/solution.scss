@@ -1,0 +1,31 @@
+div.img-container {
+	width: 100%;
+	img {
+		width: 100%
+	}
+}
+#pirate {
+	padding: 3em;
+	background: #000;
+	color: #fff;
+	border-radius: 2em;
+}
+section {
+	height: auto;
+	&.full {
+		height: 100%;
+	}
+	&.cols div.col {
+		padding: 2rem;
+		&.left {
+			justify-content: flex-start;
+			text-align: left;
+		}
+	}
+}
+main.page {
+	display: none;
+	&.p1 {
+		display: block;
+	}
+}
