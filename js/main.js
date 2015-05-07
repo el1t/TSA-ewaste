@@ -4,6 +4,7 @@ $(window).load(function() {
 	$(".noscroll").each(function() {
 		$(this).removeClass("noscroll");
 	});
+	$("#preload-images").remove();
 	// If load time takes more than 0.5s after document ready, animate preload
 	var $preload = $("#preload");
 	if (new Date() - startTime >= 500) {
@@ -160,6 +161,7 @@ $(document).ready(function() {
 		pie.redraw();
 	}).addTo(controller);
 
+	// Create bar chart
 	new ScrollMagic.Scene({
 		triggerElement: "#section3",
 		triggerHook: "onCenter",
@@ -174,7 +176,7 @@ $(document).ready(function() {
 				text: "E-Waste Production by Country"
 			},
 			tooltip: {
-				valueSuffix: " million"
+				valueSuffix: " million tons"
 			},
 			xAxis: {
 				categories: chartData.countries.names
@@ -198,7 +200,6 @@ $(document).ready(function() {
 				data: chartData.countries.values
 			}]
 		});
-		$("#section3").find(".left").addClass("active");
 	}).addTo(controller);
 
 	$("footer").click(function() {

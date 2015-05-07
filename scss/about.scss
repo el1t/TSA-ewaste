@@ -34,27 +34,30 @@ $mini-hex-size: 3rem;
 		width: ($hex-size * 1.7);
 		height: $hex-size;
 		background-color: #444;
-		//transform: rotate(-90deg);
 		display: inline-block;
 		margin-right: 0.5rem;
 		transition: all 0.1s ease-in-out;
-	}
-	.hex:before, .hex:after {
-		position: absolute;
-		width: inherit; height: inherit;
-		border-radius: inherit;
-		background: inherit;
-		content: "";
-	}
-	.hex:before {
-		transform: rotate(60deg);
-	}
-	.hex:after {
-		transform: rotate(-60deg);
-	}
-	.hex:hover {
-		background: #888;
-		cursor: pointer;
+		&:before {
+			position: absolute;
+			width: inherit; height: inherit;
+			border-radius: inherit;
+			background: inherit;
+			content: "";
+			transform: rotate(60deg);
+		}
+		&:after {
+			@extend &:before;
+			transform: rotate(-60deg);
+		}
+		&:active {
+			transform: scale3d(0.9, 0.9, 1);
+		}
+		@include desktop {
+			&:hover {
+				background: #888;
+				cursor: pointer;
+			}
+		}
 	}
 	h1 {
 		position: absolute;
@@ -67,6 +70,7 @@ $mini-hex-size: 3rem;
 		text-align: center;
 		line-height: 3rem;
 		z-index: 2;
+		pointer-events: none;
 		&.small {
 			font-size: 200%;
 		}
@@ -78,6 +82,12 @@ $mini-hex-size: 3rem;
 		.hex {
 			width: ($mini-hex-size * 1.7);
 			height: $mini-hex-size;
+			// Remove default tap highlight
+			-webkit-tap-highlight-color: rgba(0,0,0,0);
+			-webkit-tap-highlight-color: transparent;
+			&:active {
+				background-color: #888;
+			}
 		}
 		ol:nth-child(2n) {
 			margin-top: 2rem;
