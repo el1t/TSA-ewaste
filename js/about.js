@@ -20,4 +20,12 @@ $(function() {
 	}).setTween(parallax)
 		.setPin("#case")
 		.addTo(controller);
+
+	var $footer = $("footer");
+	$footer.find(".left").click(function() {
+		window.location.href = "/";
+	});
+	$footer.find(".right").click(function() {
+		window.location.href = "solution.html"
+	})
 });

@@ -1,3 +1,5 @@
+@import "mixins";
+
 #case {
 	position: absolute;
 	top: 25%;
@@ -10,8 +12,13 @@
 		max-height: 100%;
 		width: auto;
 	}
+	@include phone {
+		display: none;
+		width: 0;
+	}
 }
 $hex-size: 6rem;
+$mini-hex-size: 3rem;
 .hex-grid {
 	ol:nth-child(2n-1) {
 		position: relative;
@@ -19,8 +26,8 @@ $hex-size: 6rem;
 	}
 	ol:nth-child(2n) {
 		position: relative;
-		margin-top: 3.5em;
-		margin-bottom: 3.5em;
+		margin-top: 3.5rem;
+		margin-bottom: 3.5rem;
 	}
 	.hex {
 		position: relative;
@@ -29,7 +36,7 @@ $hex-size: 6rem;
 		background-color: #444;
 		//transform: rotate(-90deg);
 		display: inline-block;
-		margin-right: 0.5em;
+		margin-right: 0.5rem;
 		transition: all 0.1s ease-in-out;
 	}
 	.hex:before, .hex:after {
@@ -64,10 +71,34 @@ $hex-size: 6rem;
 			font-size: 200%;
 		}
 	}
+	@include phone {
+		ol:nth-child(2n-1) {
+			left: ($mini-hex-size / 1.1);
+		}
+		.hex {
+			width: ($mini-hex-size * 1.7);
+			height: $mini-hex-size;
+		}
+		ol:nth-child(2n) {
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+		}
+		h1 {
+			font-size: 150%;
+			line-height: 0;
+			&.small {
+				font-size: 110%;
+			}
+		}
+	}
 }
 section {
 	height: auto;
+	margin-bottom: 4rem;
 	&.full {
 		height: 100%;
 	}
+}
+#padding {
+	height: 20%;
 }

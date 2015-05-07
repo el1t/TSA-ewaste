@@ -54,7 +54,7 @@ $(document).ready(function() {
 	// Parallax first background
 	new ScrollMagic.Scene({
 		offset: windowHeight,
-		duration: windowHeight * 2
+		duration: windowHeight * 3
 	}).setTween(new TimelineLite().to(
 		$("#bg1"), 1, {css: {top: "-18%"}, ease: Linear.easeNone}
 	)).addTo(controller);
@@ -201,16 +201,7 @@ $(document).ready(function() {
 		$("#section3").find(".left").addClass("active");
 	}).addTo(controller);
 
-
-	var $sources = $("#sources"),
-		$sourceContent = $sources.children(".content");
 	$("footer").click(function() {
-		$sources.addClass("active");
-	});
-	$sources.click(function() {
-		$sources.removeClass("active");
-	});
-	$sourceContent.click(function(event) {
-		event.stopPropagation();
+		window.location.href = "about.html";
 	});
 });
