@@ -1,5 +1,6 @@
 var startTime = undefined,
 	preloader = undefined;
+
 $(window).load(function() {
 	$(".noscroll").each(function() {
 		$(this).removeClass("noscroll");
@@ -30,27 +31,39 @@ $(document).ready(function() {
 	}, 500);
 
 	var $window = $(window),
-		windowHeight = $window.height(),
-		windowWidth = $window.width(),
+		windowHeight = $.viewportH(),
+		windowWidth = $.viewportW(),
 		controller = new ScrollMagic.Controller();
+	var isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
 
-	var image = $("#slider");
-	var zoomDepth = Math.max(windowHeight / 2848, windowWidth / 4288);
-	var sliderZoom = new TimelineLite({paused: true})
-		.to(image, 1, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true})
-		.to($("#title"), 0.1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
-		.to($("#start"), 1, {css: {autoAlpha: "0", display: "none"}}, 0)
-		.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
-		.set(image, {css: {display: "none"}});
+	var image = $("#slider"),
+		zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288,
+		sliderZoom = new TimelineLite({paused: true})
+			.to(image, 1, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true})
+			.to($("#title"), 0.1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
+			.to($("#start"), 1, {css: {autoAlpha: "0", display: "none"}}, 0)
+			.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
+			.set(image, {css: {display: "none"}});
 
 	// Manually handle zoom animation for interpolation and performance
-	$window.on("scroll", function() {
+	$window.scroll(function() {
 		var scrollPercent = $window.scrollTop() / (windowHeight);
 		if(scrollPercent >= 0 && (sliderZoom.progress() < 1 || scrollPercent <= 1.5)) {
 			TweenLite.to(sliderZoom.pause(), 0.1, {time: scrollPercent});
 		}
 	});
 
+	$window.resize(function() {
+		windowHeight = $.viewportH();
+		windowWidth = $.viewportW();
+		if (windowHeight > windowWidth) {
+			$("#bg1").css("background-size", "auto 100%");
+		}
+		// Update zoomDepth of sliderZoom
+		zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288;
+		// Overwrite old tween
+		sliderZoom.fromTo(image, 1, {css: {zoom: 1}}, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true}, 0);
+	});
 
 	// Parallax first background
 	new ScrollMagic.Scene({
@@ -132,7 +145,6 @@ $(document).ready(function() {
 		});
 	}).addTo(controller);
 
-
 	// Pin pie chart
 	new ScrollMagic.Scene({
 		triggerElement: "#pin",
@@ -142,10 +154,25 @@ $(document).ready(function() {
 		.addTo(controller);
 
 	// Event to switch pie chart
-	new ScrollMagic.Scene({
+	var pieTransition = new ScrollMagic.Scene({
 		triggerElement: "#section2",
 		duration: 0
-	}).on("enter", function() {
+	});
+
+	// Formatting for screens < 480px
+	if (isMobile) {
+		// Fill barchart spacing with empty chart
+		new Highcharts.Chart({
+			chart: {
+				type: "bar",
+				renderTo: "barchart"
+			},
+			title: {text: "E-Waste Production by Country"}
+		});
+		pieTransition.offset(-windowHeight / 2);
+	}
+
+	pieTransition.on("enter", function() {
 		$.each(pie.series[0].data, function (i, point) {
 			point.update(chartData.create[i], false);
 		});

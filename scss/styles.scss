@@ -155,11 +155,9 @@ section.cols {
 	justify-content: flex-start;
 	z-index: 1;
 
-	& > div {
+	.col {
 		height: 100%;
 		width: 50%;
-	}
-	.col {
 		display: flex;
 		align-items: center;
 		&.left {
@@ -174,11 +172,9 @@ section.cols {
 	// Phone
 	@include phone {
 		flex-direction: column;
-		& > div {
-			width: 100%;
-		}
 		.col {
-			height: 100%;
+			height: auto;
+			width: 100%;
 		}
 	}
 }

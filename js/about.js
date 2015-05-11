@@ -1,7 +1,6 @@
 $(function() {
-	var $window = $(window),
-		windowHeight = $window.height(),
-		windowWidth = $window.width(),
+	var windowHeight = $.viewportH(),
+		windowWidth = $.viewportW(),
 		controller = new ScrollMagic.Controller();
 
 	// Parallax phone
@@ -23,7 +22,7 @@ $(function() {
 
 	var $footer = $("footer");
 	$footer.find(".left").click(function() {
-		window.location.href = "/";
+		window.location.href = "./";
 	});
 	$footer.find(".right").click(function() {
 		window.location.href = "solution.html"

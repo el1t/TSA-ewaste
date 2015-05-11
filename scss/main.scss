@@ -123,6 +123,10 @@
 	width: 75%;
 	height: 75%;
 	z-index: 1;
+	@include phone {
+		width: 100%;
+		height: 100%;
+	}
 }
 #section2 {
 	z-index: 0;
@@ -166,6 +170,18 @@
 		background-color: #555;
 		h1 {
 			margin: 0;
+		}
+	}
+}
+@include phone {
+	section {
+		height: auto;
+		&#start {
+			height: 100%;
+		}
+		&.cols .col, &.cols .col.left{
+			justify-content: center;
+			text-align: center;
 		}
 	}
 }

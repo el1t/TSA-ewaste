@@ -1,7 +1,6 @@
 $(function() {
-	var $window = $(window),
-		windowHeight = $window.height(),
-		windowWidth = $window.width(),
+	var windowHeight = $.viewportH(),
+		windowWidth = $.viewportW(),
 		controller = new ScrollMagic.Controller();
 
 	new ScrollMagic.Scene({
