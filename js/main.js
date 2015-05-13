@@ -2,9 +2,6 @@ var startTime = undefined,
 	preloader = undefined;
 
 $(window).load(function() {
-	$(".noscroll").each(function() {
-		$(this).removeClass("noscroll");
-	});
 	$("#preload-images").remove();
 	// If load time takes more than 0.5s after document ready, animate preload
 	var $preload = $("#preload");
@@ -14,11 +11,17 @@ $(window).load(function() {
 			$preload.addClass("gone");
 			setTimeout(function() {
 				$preload.css("display", "none");
-			}, 750);
+				$(".noscroll").each(function() {
+					$(this).removeClass("noscroll");
+				});
+			}, 600);
 		}, 1000);
 	} else {
 		clearTimeout(preloader);
 		$preload.css("display", "none");
+		$(".noscroll").each(function() {
+			$(this).removeClass("noscroll");
+		});
 	}
 });
 
@@ -35,6 +38,9 @@ $(document).ready(function() {
 		windowWidth = $.viewportW(),
 		controller = new ScrollMagic.Controller();
 	var isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
+	if (window.navigator.standalone == true) {
+		$("#statusbar").removeClass("hidden");
+	}
 
 	var image = $("#slider"),
 		zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288,

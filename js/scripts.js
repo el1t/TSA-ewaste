@@ -1,6 +1,25 @@
 $(function() {
 	var smallScreen = window.matchMedia("only screen and (max-width: 480px)").matches;
 	// Setup menu animation
+	if (window.navigator.standalone == true) {
+		$("header").addClass("webapp");
+		// Redirect hrefs to manual
+		$("a").on("click", function(e) {
+			var link = $(e.target).attr("href");
+			// Check external link
+			if (!link.match(/^(..\/|http:\/\/)/)) {
+				// Stop the default behavior of the browser, which
+				// is to change the URL of the page.
+				e.preventDefault();
+				// Manually change the location of the page to stay in
+				// "Standalone" mode and change the URL at the same time.
+				location.href = link;
+			}
+		});
+	} else if (navigator.userAgent.match(/(ip(hone|od|ad))/i)) {
+		// Display toast to encourage installing web app
+
+	}
 	if (smallScreen) {
 		$("#title").after("<i class=\"fa fa-chevron-circle-down\" id=\"menu-toggle\" ontouchstart=\"\"></i>");
 		var $menu = $("#menu"),
