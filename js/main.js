@@ -40,6 +40,38 @@ $(document).ready(function() {
 	var isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
 	if (window.navigator.standalone == true) {
 		$("#statusbar").removeClass("hidden");
+	} else if (navigator.userAgent.match(/(ip(hone|od|ad))/i)) {
+		// Display toast to encourage installing web app
+		// Only if cookie is not present
+		if (document.cookie.indexOf("visited") < 0) {
+			$("#statusbar").after(
+				"<div id=\"notification\">" +
+					"<img src=\"../images/webapp.png\" ontouchstart=\"\"/>" +
+					"<div>" +
+						"<h1>Did you know:</h1>" +
+						"<p>You can tap \"share\" below and choose \"Add to Home Screen\" " +
+						"to view me as a web-app!</p>" +
+					"</div>" +
+					"<span>x</span>" +
+				"</div>");
+			var $notification = $("#notification");
+			$notification.on("scroll touchmove", function(e) {
+				e.preventDefault();
+			});
+			$("#start").on("touchstart", function() {
+				$notification.addClass("gone");
+				$(this).off("touchstart");
+			});
+			$notification.find("span").click(function() {
+				$notification.addClass("gone");
+				// set a new cookie
+				var date = new Date();
+				date.setTime(date.getTime() + (7*24*60*60*1000)); // 1 week
+
+				// Date()'s toGMTSting() method will format the date correctly for a cookie
+				document.cookie = "visited=yes; expires=" + date.toGMTString();
+			});
+		}
 	}
 
 	var image = $("#slider"),

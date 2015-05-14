@@ -16,9 +16,6 @@ $(function() {
 				location.href = link;
 			}
 		});
-	} else if (navigator.userAgent.match(/(ip(hone|od|ad))/i)) {
-		// Display toast to encourage installing web app
-
 	}
 	if (smallScreen) {
 		$("#title").after("<i class=\"fa fa-chevron-circle-down\" id=\"menu-toggle\" ontouchstart=\"\"></i>");
