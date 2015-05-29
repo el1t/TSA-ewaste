@@ -7,7 +7,7 @@ $(function() {
 		$("a").on("click", function(e) {
 			var link = $(e.target).attr("href");
 			// Check external link
-			if (!link.match(/^(..\/|http:\/\/)/)) {
+			if (link.match(/(..\/|http:\/\/)/)) {
 				// Stop the default behavior of the browser, which is to change the URL of the page.
 				e.preventDefault();
 				// Manually change the location of the page to stay in "Standalone" mode.
