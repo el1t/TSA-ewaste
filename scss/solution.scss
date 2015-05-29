@@ -1,27 +1,93 @@
+@import "mixins";
+
 div.img-container {
 	width: 100%;
 	img {
 		width: 100%
 	}
 }
-#pirate {
-	padding: 3em;
-	background: #000;
-	color: #fff;
-	border-radius: 2em;
+main {
+	top: 0;
 }
 section {
 	height: auto;
 	&.full {
 		height: 100%;
 	}
+	&.half {
+		height: 50%;
+	}
 	&.cols div.col {
-		padding: 2rem;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 2rem 0;
 		&.left {
 			justify-content: flex-start;
 			text-align: left;
 		}
+		.fa {
+			width: 100%;
+			text-align: center;
+		}
+		h1, h2, h3, h4, h5 {
+			text-align: center;
+		}
 	}
+	h2 {
+		padding: 2rem 0;
+	}
+}
+#hero {
+	color: white;
+	background-color: #333;
+	height: calc(50% + 4rem);
+	padding-top: 4rem;
+	@include phone {
+		height: 50%;
+		padding-top: 0;
+	}
+}
+#three-col {
+	height: calc(50% - 4rem);
+	.col {
+		background-color: #EEE;
+		transition: color 0.1s linear, background-color 0.1s linear;
+		&:hover {
+			background-color: rgba(#EEE, 0.6);
+		}
+		div {
+			width: 75%;
+			text-align: center;
+			font-weight: 300;
+			font-size: 110%;
+			h2 {
+				margin: 0;
+			}
+		}
+	}
+	#reduce-col:hover {
+		color: #1976D2;
+	}
+	#reuse-col:hover {
+		color: #388E3C;
+	}
+	#recycle-col:hover {
+		color: #F57C00;
+	}
+	@include phone {
+		height: 50%;
+	}
+}
+#reduce {
+	color: white;
+	background-color: #2196F3;
+}
+#reuse {
+	color: white;
+	background-color: #4CAF50;
+}
+#recycle {
+	background-color: #FFC107;
 }
 main.page {
 	display: none;
