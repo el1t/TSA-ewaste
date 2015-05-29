@@ -38,7 +38,7 @@ $(document).ready(function() {
 		windowWidth = $.viewportW(),
 		controller = new ScrollMagic.Controller();
 	var isMobile = window.matchMedia("only screen and (max-width: 480px)").matches;
-	if (window.navigator.standalone == true) {
+	if (window.navigator.standalone) {
 		$("#statusbar").removeClass("hidden");
 	} else if (navigator.userAgent.match(/(ip(hone|od|ad))/i)) {
 		// Display toast to encourage installing web app

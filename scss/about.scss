@@ -109,11 +109,31 @@ $mini-hex-size: 3rem;
 }
 section {
 	height: auto;
-	margin-bottom: 4rem;
 	&.full {
 		height: 100%;
+	}
+	&.pad {
+		margin-bottom: 4rem;
 	}
 }
 #padding {
 	height: 20%;
+}
+div.img-container {
+	width: 100%;
+	padding: 0 1rem;
+	img {
+		width: 100%;
+	}
+	&.center {
+		text-align: center;
+		img {
+			width: 50%
+		}
+		.footnote {
+			position: relative;
+			text-transform: uppercase;
+			font-size: 75%;
+		}
+	}
 }

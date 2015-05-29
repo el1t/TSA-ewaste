@@ -85,13 +85,13 @@ header {
 			font-weight: 300;
 			padding-left: 1em;
 			color: black;
-			opacity: 0.8;
-			transition: inherit, opacity 0.1s linear;
+			opacity: 0.7;
+			transition: inherit, opacity .1s linear;
 		}
 	}
 	@include desktop {
 		a:hover {
-			opacity: 1;
+			opacity: 1 !important;
 		}
 	}
 	@include mobile {
@@ -100,7 +100,7 @@ header {
 			font-size: 75%;
 		}
 		a:active {
-			opacity: 1;
+			opacity: 1 !important;
 		}
 	}
 	@include tablet {
