@@ -74,14 +74,19 @@ $(document).ready(function() {
 		}
 	}
 
-	var image = $("#slider"),
-		zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288,
+	// JQ selectors
+	var $image = $("#slider"),
+		$scrollIndicator = $("#scroll-indicator"),
+		$section1 = $("#section1");
+
+	var zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288,
 		sliderZoom = new TimelineLite({paused: true})
-			.to(image, 1, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true})
+			.to($image, 1, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true})
 			.to($("#title"), 0.1, {css: {autoAlpha: "0"}, ease: Linear.easeNone}, 0)
 			.to($("#start"), 1, {css: {autoAlpha: "0", display: "none"}}, 0)
-			.to(image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
-			.set(image, {css: {display: "none"}});
+			.to($scrollIndicator, 0.2, {css: {autoAlpha: "0", display: "none", bottom: "3rem"}, ease: Linear.easeNone}, 0)
+			.to($image, 0.5, {autoAlpha:"0", ease: Linear.easeNone, force3D: true})
+			.set($image, {css: {display: "none"}});
 
 	// Manually handle zoom animation for interpolation and performance
 	$window.scroll(function() {
@@ -89,6 +94,13 @@ $(document).ready(function() {
 		if(scrollPercent >= 0 && (sliderZoom.progress() < 1 || scrollPercent <= 1.5)) {
 			TweenLite.to(sliderZoom.pause(), 0.1, {time: scrollPercent});
 		}
+	});
+
+	$scrollIndicator.find("a").click(function() {
+		$("html, body").animate({
+			scrollTop: $section1.offset().top
+		}, 2000);
+		return false;
 	});
 
 	$window.resize(function() {
@@ -100,7 +112,7 @@ $(document).ready(function() {
 		// Update zoomDepth of sliderZoom
 		zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288;
 		// Overwrite old tween
-		sliderZoom.fromTo(image, 1, {css: {zoom: 1}}, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true}, 0);
+		sliderZoom.fromTo($image, 1, {css: {zoom: 1}}, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true}, 0);
 	});
 
 	// Parallax first background

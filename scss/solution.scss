@@ -39,13 +39,16 @@ section {
 		padding: 1rem 0;
 	}
 	h3 {
-		padding: 2rem 0 0;
 		font-weight: 300;
+		font-size: 200%;
+		&:first-child {
+			padding: 2rem 0 0;
+		}
 	}
 	p {
 		font-weight: 300;
 		line-height: 125%;
-		font-size: 125%;
+		font-size: 140%;
 	}
 }
 #hero {
