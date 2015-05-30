@@ -5,13 +5,12 @@ $(function() {
 		$("header").addClass("webapp");
 		// Redirect hrefs to manual redirect
 		$("a").on("click", function(e) {
-			var link = $(e.target).attr("href");
-			// Check external link
-			if (link.match(/(..\/|http:\/\/)/)) {
+			var $target = $(e.target);
+			if ($target.attr("target") != "_blank") {
 				// Stop the default behavior of the browser, which is to change the URL of the page.
 				e.preventDefault();
 				// Manually change the location of the page to stay in "Standalone" mode.
-				location.href = link;
+				location.href = $target.attr("href");
 			}
 		});
 	}
@@ -31,6 +30,11 @@ $(function() {
 				$main.removeClass("blur");
 				$toggle.removeClass("active");
 				$menu.removeClass("active");
+			}
+		});
+		$("header").on("touchmove", function(e) {
+			if ($menu.hasClass("active")) {
+				e.preventDefault();
 			}
 		});
 	}

@@ -15,7 +15,11 @@ $(function() {
 			}
 		}
 	});
-	$("footer").click(function() {
-		window.location.href = "./";
+	var $footer = $("footer");
+	$footer.find(".left").click(function() {
+		window.location.href = "about.html";
+	});
+	$footer.find(".right").click(function() {
+		window.location.href = "resources.html"
 	});
 });

@@ -359,6 +359,11 @@ footer {
 }
 
 @include phone {
+	* {
+		// Remove default tap highlight
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		-webkit-tap-highlight-color: transparent;
+	}
 	p {
 		hyphens: auto;
 		font-size: 1.25em;

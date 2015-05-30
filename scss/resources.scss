@@ -1,0 +1,60 @@
+@import "mixins";
+
+main > h1 {
+	padding-left: 2rem;
+}
+section {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding-right: 1rem;
+	@include phone {
+		height: auto;
+		padding: 1rem;
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+}
+.card {
+	width: 20rem;
+	height: 33%;
+	flex-grow: 1;
+	margin-left: 1rem;
+	margin-top: 1rem;
+	background-color: #DDD;
+	transition: background-color 0.1s linear;
+	&:hover {
+		background-color: rgba(#DDD, 0.7);
+	}
+	a {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		font-size: 150%;
+		align-items: center;
+		justify-content: center;
+		h1, h2, h3, h4, h5, h6 {
+			text-align: center;
+			color: black;
+		}
+	}
+	@include larger {
+		&.large {
+			width: 41rem;
+			flex-grow: 2;
+		}
+	}
+	@include mobile {
+		transition: background-color 0.1s linear, transform 0.1s linear;
+		&:active {
+			transform: scale3d(0.9, 0.9, 1);
+		}
+	}
+	@include phone {
+		width: 100%;
+		height: 15rem;
+		flex: 1;
+		margin: 0 0 1rem 0;
+	}
+}

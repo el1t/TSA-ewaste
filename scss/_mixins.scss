@@ -53,3 +53,8 @@ $desktop-width: 1024px;
 		@content;
 	}
 }
+@mixin larger {
+	@media only screen and (min-width: #{$phone-width + 1px}) {
+		@content;
+	}
+}

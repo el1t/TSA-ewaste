@@ -26,5 +26,5 @@ $(function() {
 	});
 	$footer.find(".right").click(function() {
 		window.location.href = "solution.html"
-	})
+	});
 });
