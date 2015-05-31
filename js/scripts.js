@@ -3,6 +3,7 @@ $(function() {
 	// Setup menu animation
 	if (window.navigator.standalone) {
 		$("header").addClass("webapp");
+		$("main").addClass("webapp");
 		// Redirect hrefs to internal links
 		$("a[target!='_blank']:not([href*=#])").on("click", function(e) {
 			// Stop the default behavior of the browser, which is to change the URL of the page.

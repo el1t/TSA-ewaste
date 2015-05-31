@@ -22,7 +22,7 @@ section {
 		flex-wrap: nowrap;
 	}
 }
-.card {
+.tile {
 	@include tile(#DDD);
 	position: relative;
 	width: 20rem;

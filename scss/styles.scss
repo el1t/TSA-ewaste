@@ -175,6 +175,9 @@ main {
 	top: 4rem;
 	left: 0;
 	width: 100%;
+	&.webapp {
+		top: calc(4rem + 20px);
+	}
 	@include phone {
 		-webkit-transition: -webkit-filter 250ms linear, opacity 250ms linear;
 		-moz-transition: -moz-filter 250ms linear, opacity 250ms linear;
@@ -375,23 +378,14 @@ footer {
 	}
 	h1 {
 		font-size: 250%;
-		font-weight: 300;
-		margin: 1.5rem 0;
-		padding: 0;
 	}
 	h2 {
 		font-size: 200%;
-		font-weight: 300;
-		margin: 1.25rem 0;
 	}
 	h3 {
 		font-size: 150%;
-		font-weight: 400;
-		margin: 1rem 0;
 	}
 	h4 {
 		font-size: 125%;
-		font-weight: 400;
-		margin: 1rem 0;
 	}
 }

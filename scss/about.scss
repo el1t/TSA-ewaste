@@ -50,7 +50,7 @@ $mini-hex-size: 3rem;
 			transform: rotate(60deg);
 		}
 		&:after {
-			@extend &:before;
+			@extend .hex:before;
 			transform: rotate(-60deg);
 		}
 		&:active {

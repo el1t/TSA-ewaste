@@ -103,7 +103,7 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$window.resize(function() {
+	var recalculate = function() {
 		windowHeight = $.viewportH();
 		windowWidth = $.viewportW();
 		if (windowHeight > windowWidth) {
@@ -113,9 +113,13 @@ $(document).ready(function() {
 		zoomDepth = windowHeight > windowWidth && windowHeight / 2848 || windowWidth / 4288;
 		// Overwrite old tween
 		sliderZoom.fromTo($image, 1, {css: {zoom: 1}}, {css: {zoom: zoomDepth}, ease: Linear.easeNone, force3D: true}, 0);
-	});
+	};
 
-	// Parallax first background
+	$window.resize(recalculate);
+
+	recalculate();  // force recalculation on bad browsers
+
+	// Parallax circuit board
 	new ScrollMagic.Scene({
 		offset: windowHeight,
 		duration: windowHeight * 3
