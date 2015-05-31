@@ -46,7 +46,7 @@ $(document).ready(function() {
 		if (document.cookie.indexOf("visited") < 0) {
 			$("#statusbar").after(
 				"<div id=\"notification\">" +
-					"<img src=\"../images/webapp.png\" ontouchstart=\"\"/>" +
+					"<img src=\"images/webapp.png\" ontouchstart=\"\"/>" +
 					"<div>" +
 						"<h1>Did you know:</h1>" +
 						"<p>You can tap \"share\" below and choose \"Add to Home Screen\" " +
