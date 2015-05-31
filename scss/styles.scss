@@ -25,6 +25,9 @@ html, main {
 		position: fixed;
 	}
 }
+.no-transition {
+	transition: none !important;
+}
 header {
 	position: fixed;
 	display: flex;
@@ -299,8 +302,10 @@ p {
 	font-weight: 400;
 	color: #333;
 	&.no-indent {
-		//text-indent: 0;
 		padding: 2rem;
+		@include phone {
+			padding: 2rem 1rem;
+		}
 	}
 }
 div.button {

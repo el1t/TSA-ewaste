@@ -3,15 +3,12 @@ $(function() {
 	// Setup menu animation
 	if (window.navigator.standalone) {
 		$("header").addClass("webapp");
-		// Redirect hrefs to manual redirect
-		$("a").on("click", function(e) {
-			var $target = $(e.target);
-			if ($target.attr("target") != "_blank") {
-				// Stop the default behavior of the browser, which is to change the URL of the page.
-				e.preventDefault();
-				// Manually change the location of the page to stay in "Standalone" mode.
-				location.href = $target.attr("href");
-			}
+		// Redirect hrefs to internal links
+		$("a[target!='_blank']:not([href*=#])").on("click", function(e) {
+			// Stop the default behavior of the browser, which is to change the URL of the page.
+			e.preventDefault();
+			// Manually change the location of the page to stay in "Standalone" mode.
+			location.href = $(e.target).attr("href");
 		});
 	}
 	if (smallScreen) {

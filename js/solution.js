@@ -1,7 +1,6 @@
 $(function() {
-	var windowHeight = $.viewportH(),
-		windowWidth = $.viewportW(),
-		controller = new ScrollMagic.Controller();
+	//var windowHeight = $.viewportH(),
+	//	windowWidth = $.viewportW();
 	var $header = $("header");
 	$("a[href*=#]:not([href=#])").click(function() {
 		if (location.pathname.replace(/^\//,"") == this.pathname.replace(/^\//,"") && location.hostname == this.hostname) {

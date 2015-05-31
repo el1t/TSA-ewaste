@@ -11,11 +11,15 @@
 		left: 0;
 		max-height: 100%;
 		width: auto;
+		transition: left 0.5s linear;
 	}
 	@include mobile {
 		display: none;
 		width: 0;
 	}
+}
+.phone-padding {
+	transition: margin-left 0.5s linear, width 0.5s linear;
 }
 $hex-size: 6rem;
 $mini-hex-size: 3rem;
