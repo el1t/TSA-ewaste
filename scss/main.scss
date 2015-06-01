@@ -130,6 +130,28 @@
 		}
 	}
 }
+.scroll-down {
+	position: fixed;
+	bottom: 1rem;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.5s linear;
+	text-align: center;
+	z-index: 100;
+	&.active {
+		opacity: 0.9;
+	}
+	h1 {
+		font-size: 200%;
+		font-weight: 200;
+		text-transform: uppercase;
+		margin: 0;
+	}
+	.fa {
+		font-size: 3rem;
+	}
+}
 #padding {
 	height: 200%;
 }

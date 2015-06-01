@@ -111,6 +111,28 @@ $mini-hex-size: 3rem;
 		}
 	}
 }
+#notification {
+	position: fixed;
+	bottom: 2rem;
+	left: 0;
+	text-align: center;
+	width: 100%;
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s linear;
+	&.active {
+		opacity: 1;
+	}
+	h1 {
+		display: inline;
+		padding: 1rem;
+		border-radius: 0.5rem;
+		background-color: rgba(#DDD, 0.8);
+		cursor: pointer;
+		pointer-events: initial;
+	}
+}
 section {
 	height: auto;
 	&.full {

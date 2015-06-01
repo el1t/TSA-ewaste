@@ -100,6 +100,20 @@ $(document).ready(function() {
 		$("html, body").animate({
 			scrollTop: $section1.offset().top
 		}, 2000);
+		setTimeout(function() {
+			var temp = $("<div class=\"scroll-down\">" +
+				"<h1>Scroll down</h1>" +
+				"<span class=\"fa fa-angle-down\"></span>" +
+			"</div>").insertAfter($scrollIndicator);
+			temp.width();
+			temp.addClass("active");
+			setTimeout(function() {
+				temp.removeClass("active");
+				setTimeout(function() {
+					temp.remove();
+				}, 500);
+			}, 3000);
+		}, 2000);
 		return false;
 	});
 
