@@ -138,6 +138,7 @@
 	opacity: 0;
 	transition: opacity 0.5s linear;
 	text-align: center;
+	pointer-events: none;
 	z-index: 100;
 	&.active {
 		opacity: 0.9;
