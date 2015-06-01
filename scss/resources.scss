@@ -91,6 +91,14 @@ section {
 		color: #90CAF9;
 	}
 }
+#etc {
+	@include tile(#F48FB1)
+}
+#wong {
+	.fa {
+		color: #FFF176;
+	}
+}
 #rfy {
 	position: relative;
 	&:hover {
