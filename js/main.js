@@ -112,7 +112,7 @@ $(document).ready(function() {
 				setTimeout(function() {
 					temp.remove();
 				}, 500);
-			}, 3000);
+			}, 2000);
 		}, 2000);
 		return false;
 	});

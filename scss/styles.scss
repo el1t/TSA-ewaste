@@ -236,11 +236,14 @@ section {
 	a {
 		transition: color 0.1s linear;
 		&:link, &:visited {
-			color: #303F9F;
+			color: #3949AB;
 		}
 		&:hover {
-			color: #5C6BC0;
+			color: lighten(#3949AB, 20%);
 		}
+	}
+	p a {
+		font-weight: 400;
 	}
 	b {
 		text-transform: uppercase;
@@ -362,6 +365,11 @@ footer {
 					transition: transform 50ms linear;
 				}
 			}
+		}
+	}
+	@include phone {
+		div h2 {
+			font-size: 1.5rem;
 		}
 	}
 }

@@ -3,23 +3,31 @@
 @mixin tile($color) {
 	background-color: $color;
 	&:hover {
-		background-color: rgba($color, 0.7);
+		background-color: rgba($color, 0.5);
 	}
 }
 main > h1 {
 	padding-left: 2rem;
 }
 section {
+	height: auto;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
 	justify-content: flex-start;
 	padding-right: 1rem;
+	p {
+		padding: 0 2rem 2rem;
+		font-weight: 300;
+		line-height: 125%;
+	}
 	@include phone {
-		height: auto;
 		padding: 1rem;
 		flex-direction: column;
 		flex-wrap: nowrap;
+		p {
+			padding: 0 1rem 2rem;
+		}
 	}
 }
 .tile {
@@ -83,24 +91,33 @@ section {
 		margin: 0 0 1rem 0;
 	}
 }
-#epa {
+#edn {
 	@include tile(#A5D6A7);
+	.fa {
+		color: #D0D0D0;
+	}
 }
 #fec {
 	.fa {
 		color: #90CAF9;
 	}
 }
-#etc {
-	@include tile(#F48FB1)
-}
-#wong {
+#ifi {
 	.fa {
-		color: #FFF176;
+		color: lighten(#6BBB4D, 25%);
+	}
+}
+#ep {
+	@include tile(#C5E1A5);
+}
+#ee {
+	.fa {
+		color: #BCAAA4
 	}
 }
 #rfy {
 	position: relative;
+	@include tile(lighten(#1F5EA8, 50%));
 	&:hover {
 		&:before {
 			opacity: 0.2;
@@ -121,3 +138,38 @@ section {
 		transition: opacity 0.1s linear;
 	}
 }
+#be {
+	.fa {
+		color: #BDBDBD;
+	}
+}
+#gp {
+	.fa {
+		color: #A5D6A7;
+	}
+}
+#etc {
+	@include tile(#F48FB1);
+	.fa {
+		font-size: 25rem;
+	}
+}
+#rcr {
+	@include tile(lighten(#407FC0, 30%));
+	.fa {
+		color: #D0D0D0;
+		font-size: 13rem;
+	}
+}
+#wea {
+	.fa {
+		color: #FFF176;
+	}
+}
+#epa {
+	 @include tile(lighten(#B0BEC5, 5%));
+	 .fa {
+		 font-size: 15rem;
+		 color: #D0D0D0;
+	 }
+ }
