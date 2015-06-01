@@ -4,27 +4,38 @@ $(function() {
 		controller = new ScrollMagic.Controller();
 
 	// Parallax phone
-	var phone = $("#cellphone");
-	phone.on("load", function() {
-		phone.addClass("no-transition");
-		phone.css("left", -phone.width() + "px");
-		phone.width(); // trigger
-		phone.removeClass("no-transition");
-		phone.css("left", -phone.width() / 3 + "px");
+	var $phone = $("#cellphone");
+	var recalculate = function(removeClass) {
+		$phone.css("left", -$phone.width() + "px");
+		if (removeClass) {
+			$phone.width(); // trigger
+			$phone.removeClass("no-transition");
+		}
+		$phone.css("left", -$phone.width() / 3 + "px");
 		$(".phone-padding").css({
-			marginLeft: phone.width() * 2/3 + "px",
-			maxWidth: windowWidth - phone.width() * 2/3 + "px"
+			marginLeft: $phone.width() * 2/3 + "px",
+			maxWidth: windowWidth - $phone.width() * 2/3 + "px"
 		});
+	};
+	$phone.on("load", function() {
+		$phone.addClass("no-transition");
+		recalculate(true);
 	});
 	var parallax = new TimelineLite()
-		.fromTo(phone, 1, {top: "0"}, {top: "-100%", ease: Linear.easeNone});
+		.fromTo($phone, 1, {top: "0"}, {top: "-100%", ease: Linear.easeNone});
 	new ScrollMagic.Scene({
 		triggerElement: "#case",
 		triggerHook: "onCenter",
-		duration: windowHeight * 2
+		duration: $(document).height()
 	}).setTween(parallax)
 		.setPin("#case")
 		.addTo(controller);
+
+	$(window).resize(function() {
+		if ($phone[0].complete) {
+			recalculate(false);
+		}
+	});
 
 	var $main = $("main"),
 		timer, notif;
